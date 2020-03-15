@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { signOut } from '..apiAuth'
+import { signOut } from '../apiAuth'
 import messages from '../messages'
 
 class SignOut extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { signIn } from '..apiAuth'
+import { signIn } from '../apiAuth'
 import messages from '../messages'
 
 class SignIn extends Component {

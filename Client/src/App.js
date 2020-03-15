@@ -9,9 +9,10 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import AlertDismissible from './auth/components/AlertDismissible'
+import ProfileIndex from './profile/index'
 
 class App extends Component {
-  constructor () {
+  constructor() {
     super()
 
     this.state = {
@@ -28,7 +29,7 @@ class App extends Component {
     this.setState({ alerts: [...this.state.alerts, { message, type }] })
   }
 
-  render () {
+  render() {
     const { alerts, user } = this.state
 
     return (
@@ -49,6 +50,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <Route path='/profile' render={() => (
+            <ProfileIndex alert={this.alert} setUser={this.setUser} />
           )} />
         </main>
       </React.Fragment>
