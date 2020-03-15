@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { changePassword } from '../api'
+import { changePassword } from '..apiAuth'
 import messages from '../messages'
 
 class ChangePassword extends Component {
-  constructor () {
+  constructor() {
     super()
 
     this.state = {
@@ -33,7 +33,7 @@ class ChangePassword extends Component {
       })
   }
 
-  render () {
+  render() {
     const { oldPassword, newPassword } = this.state
 
     return (

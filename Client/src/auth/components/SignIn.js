@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { signIn } from '../api'
+import { signIn } from '..apiAuth'
 import messages from '../messages'
 
 class SignIn extends Component {
-  constructor () {
+  constructor() {
     super()
 
     this.state = {
@@ -34,7 +34,7 @@ class SignIn extends Component {
       })
   }
 
-  render () {
+  render() {
     const { email, password } = this.state
 
     return (

@@ -1,11 +1,11 @@
 import { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { signOut } from '../api'
+import { signOut } from '..apiAuth'
 import messages from '../messages'
 
 class SignOut extends Component {
-  componentDidMount () {
+  componentDidMount() {
     const { alert, history, clearUser, user } = this.props
 
     signOut(user)
@@ -14,7 +14,7 @@ class SignOut extends Component {
       .finally(() => clearUser())
   }
 
-  render () {
+  render() {
     return ''
   }
 }
