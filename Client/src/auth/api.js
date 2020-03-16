@@ -58,6 +58,24 @@ export const changePassword = (passwords, user) => {
   });
 };
 
-export const editUser = (id, user) => {
-  return axios.patch(`${apiUrl}/users/${id}`, { user });
-};
+
+
+// // Get Profile
+// export const getProfile = () => {
+//   return axios.get(`${apiURL}/Profiles`);
+// };
+
+// // Delete Profile by id
+// export const deleteProfile = id => {
+//   return axios.delete(`${apiURL}/Profiles/${id}`);
+// };
+
+// // Update existing Profile
+// export const updateProfile = (Profile, id) => {
+//   return axios.patch(`${apiURL}/Profiles/${id}`, { profile });
+// };
+
+// //Add Profile to the User 
+// export const addProfile = Profile => {
+//   return axios.post(`${apiURL}/Profiles`, { Profile });
+// };

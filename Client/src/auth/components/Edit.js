@@ -4,7 +4,7 @@ class Edit extends Component {
     super();
     this.state = {
       FirstName: this.props.firstName,
-      lName: this.props.lastName,
+      lastName: this.props.lastName,
       Email: this.props.email
     };
   }
@@ -12,7 +12,7 @@ class Edit extends Component {
     event.preventDefault();
     const User = {
       First: this.props.firstName,
-      lName: this.props.lastName,
+      lastName: this.props.lName,
 
       Email: this.props.email
     };
@@ -27,7 +27,7 @@ class Edit extends Component {
       });
     } else if (input.className === "lastName") {
       this.setState({
-        lName: input.value
+        lastName: input.value
       });
     } else {
       this.setState({
