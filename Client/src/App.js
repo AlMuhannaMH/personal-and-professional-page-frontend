@@ -34,11 +34,11 @@ class App extends Component {
   }
 
   render() {
-    const { alerts, user } = this.state
+    const { alerts, user, profile } = this.state
 
     return (
       <React.Fragment>
-        <Header user={user} />
+        <Header user={user} profile={profile} />
         {alerts.map((alert, index) => (
           <AlertDismissible key={index} variant={alert.type} message={alert.message} />
         ))}
@@ -59,7 +59,7 @@ class App extends Component {
             <Resume alert={this.alert} user={user} />
           )} />
           <Route path='/profile/:username' render={() => (
-            <ShowUserInfo profile={this.state.profile} setProfile={this.setProfile} />
+            <ShowUserInfo profile={profile} setProfile={this.setProfile} />
           )} />
         </main>
       </React.Fragment>

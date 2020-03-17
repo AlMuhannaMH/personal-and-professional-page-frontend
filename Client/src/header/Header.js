@@ -24,7 +24,7 @@ const alwaysOptions = (
   </React.Fragment>
 )
 
-const Header = ({ user }) => (
+const Header = ({ user, profile }) => (
   <header className="main-header">
     <h1>Personal and Professional Page</h1>
     <nav>
