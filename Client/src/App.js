@@ -2,15 +2,6 @@ import React, { Component } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
 
-import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
-import Header from './header/Header'
-import SignUp from './auth/components/SignUp'
-import SignIn from './auth/components/SignIn'
-import SignOut from './auth/components/SignOut'
-import ChangePassword from './auth/components/ChangePassword'
-import AlertDismissible from './auth/components/AlertDismissible'
-import ProfileIndex from './profile/index'
-
 import AuthenticatedRoute from "./auth/components/AuthenticatedRoute";
 import Header from "./header/Header";
 import SignUp from "./auth/components/SignUp";
@@ -18,9 +9,7 @@ import SignIn from "./auth/components/SignIn";
 import SignOut from "./auth/components/SignOut";
 import ChangePassword from "./auth/components/ChangePassword";
 import AlertDismissible from "./auth/components/AlertDismissible";
-//import Edit from "./auth/components/Edit";
-import AddProfileTest from "./auth/components/AddProfileTest"
-import AddProfile from "./auth/components/AddProfile"
+import CreateProfile from "./profile/Component/CreateProfile"
 class App extends Component {
   constructor() {
     super()
@@ -29,13 +18,13 @@ class App extends Component {
       user: null,
       alerts: [],
       Profiles: [{
-        Name: "Lama",
-        Label: "Software",
+        Name: "",
+        Label: "",
         // Picture : "",
-        Email: "Lamooooo1418@gmail.com",
-        Phone: "05XXXXXXX",
-        Website: "Github",
-        Summary: "kkkk",
+        Email: "",
+        Phone: "",
+        Website: "",
+        Summary: "",
         Profiles: [{ Network: "kkk", Username: "k", Url: "kkkk" }]
       }]
     }
@@ -76,6 +65,10 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+
+<AuthenticatedRoute user={user} path='/change-password' render={() => (
+            < CreateProfile user={user} />
           )} />
           <Route path='/profile' render={() => (
             <ProfileIndex alert={this.alert} setUser={this.setUser} />
