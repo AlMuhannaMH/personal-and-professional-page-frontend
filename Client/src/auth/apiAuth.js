@@ -44,7 +44,7 @@ export const signOut = user => {
   });
 };
 
-export const changePassword = (userNewInfo, user) => {
+export const UpdateUserInfo = (userNewInfo, user) => {
   return axios({
     url: apiUrl + "/update-info",
     method: "PATCH",

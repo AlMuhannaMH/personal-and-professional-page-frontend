@@ -7,7 +7,7 @@ import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
 import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
-import ChangePassword from './auth/components/ChangePassword'
+import UpdateUserInfo from './auth/components/UpdateUserInfo'
 import AlertDismissible from './auth/components/AlertDismissible'
 import Resume from './resume/components/resume'
 
@@ -49,7 +49,7 @@ class App extends Component {
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
-            <ChangePassword alert={this.alert} user={user} />
+            <UpdateUserInfo alert={this.alert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/resumes' render={() => (
             <Resume alert={this.alert} user={user} />
