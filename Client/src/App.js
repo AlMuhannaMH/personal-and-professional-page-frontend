@@ -9,7 +9,6 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import ChangePassword from './auth/components/ChangePassword'
 import AlertDismissible from './auth/components/AlertDismissible'
-import ProfileIndex from './profile/index'
 
 class App extends Component {
   constructor() {

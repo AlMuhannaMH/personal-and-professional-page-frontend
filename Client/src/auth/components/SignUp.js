@@ -11,6 +11,9 @@ class SignUp extends Component {
     this.state = {
       firstName: '',
       lastName: '',
+      username: '',
+      label: '',
+      phone: '',
       email: '',
       password: '',
       passwordConfirmation: ''
@@ -33,13 +36,13 @@ class SignUp extends Component {
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
-        this.setState({ firstName: '', lastName: '', email: '', password: '', passwordConfirmation: '' })
+        this.setState({ firstName: '', lastName: '', username: '', label: '', phone: '', email: '', password: '', passwordConfirmation: '' })
         alert(messages.signUpFailure, 'danger')
       })
   }
 
   render() {
-    const { firstName, lastName, email, password, passwordConfirmation } = this.state
+    const { firstName, lastName, username, label, phone, email, password, passwordConfirmation } = this.state
 
     return (
       <form className='auth-form' onSubmit={this.onSignUp}>
@@ -61,6 +64,32 @@ class SignUp extends Component {
           value={lastName}
           type="text"
           placeholder="Last Name"
+          onChange={this.handleChange}
+        />
+        <label htmlFor="username">Username</label>
+        <input
+          required
+          name="username"
+          value={username}
+          type="text"
+          placeholder="username"
+          onChange={this.handleChange}
+        />
+        <label htmlFor="label">Label</label>
+        <input
+          name="label"
+          value={label}
+          type="text"
+          placeholder="label"
+          onChange={this.handleChange}
+        />
+        <label htmlFor="phone">Phone</label>
+        <input
+          required
+          name="phone"
+          value={phone}
+          type="number"
+          placeholder="phone"
           onChange={this.handleChange}
         />
         <label htmlFor="email">Email</label>
