@@ -88,7 +88,7 @@ class SignUp extends Component {
           required
           name="phone"
           value={phone}
-          type="number"
+          type="text"
           placeholder="phone"
           onChange={this.handleChange}
         />

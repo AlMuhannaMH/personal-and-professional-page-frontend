@@ -50,9 +50,6 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-          <Route path='/profile' render={() => (
-            <ProfileIndex alert={this.alert} setUser={this.setUser} />
-          )} />
         </main>
       </React.Fragment>
     )
