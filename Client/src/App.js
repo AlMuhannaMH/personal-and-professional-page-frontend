@@ -11,23 +11,45 @@ import ChangePassword from './auth/components/ChangePassword'
 import AlertDismissible from './auth/components/AlertDismissible'
 import ProfileIndex from './profile/index'
 
+import AuthenticatedRoute from "./auth/components/AuthenticatedRoute";
+import Header from "./header/Header";
+import SignUp from "./auth/components/SignUp";
+import SignIn from "./auth/components/SignIn";
+import SignOut from "./auth/components/SignOut";
+import ChangePassword from "./auth/components/ChangePassword";
+import AlertDismissible from "./auth/components/AlertDismissible";
+//import Edit from "./auth/components/Edit";
+import AddProfileTest from "./auth/components/AddProfileTest"
+import AddProfile from "./auth/components/AddProfile"
 class App extends Component {
   constructor() {
     super()
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      Profiles: [{
+        Name: "Lama",
+        Label: "Software",
+        // Picture : "",
+        Email: "Lamooooo1418@gmail.com",
+        Phone: "05XXXXXXX",
+        Website: "Github",
+        Summary: "kkkk",
+        Profiles: [{ Network: "kkk", Username: "k", Url: "kkkk" }]
+      }]
     }
-  }
+  };
 
-  setUser = user => this.setState({ user })
 
-  clearUser = () => this.setState({ user: null })
+  setUser = user => this.setState({ user });
+  setProfile = Profile => this.setState({ Profile });
+
+  clearUser = () => this.setState({ user: null });
 
   alert = (message, type) => {
-    this.setState({ alerts: [...this.state.alerts, { message, type }] })
-  }
+    this.setState({ alerts: [...this.state.alerts, { message, type }] });
+  };
 
   render() {
     const { alerts, user } = this.state
@@ -36,7 +58,11 @@ class App extends Component {
       <React.Fragment>
         <Header user={user} />
         {alerts.map((alert, index) => (
-          <AlertDismissible key={index} variant={alert.type} message={alert.message} />
+          <AlertDismissible
+            key={index}
+            variant={alert.type}
+            message={alert.message}
+          />
         ))}
         <main className="container">
           <Route path='/sign-up' render={() => (
@@ -56,8 +82,9 @@ class App extends Component {
           )} />
         </main>
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default App
+
+export default App;
