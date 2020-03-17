@@ -9,9 +9,7 @@ class SignIn extends Component {
     super()
 
     this.state = {
-      // username: '',
-      // email: '',
-      usernameOrEmail: '',
+      username: '',
       password: ''
     }
   }
@@ -28,26 +26,26 @@ class SignIn extends Component {
     signIn(this.state)
       .then(res => setUser(res.data.user))
       .then(() => alert(messages.signInSuccess, 'success'))
-      .then(() => history.push('/profile/' + this.state.usernameOrEmail))
+      .then(() => history.push('/profile/' + this.state.username))
       .catch(error => {
         console.error(error)
-        this.setState({ usernameOrEmail: '', password: '' })
+        this.setState({ username: '', password: '' })
         alert(messages.signInFailure, 'danger')
       })
   }
 
   render() {
-    const { usernameOrEmail, password } = this.state
+    const { username, password } = this.state
 
     return (
       <form className='auth-form' onSubmit={this.onSignIn}>
         <h3>Sign In</h3>
-        <label htmlFor="usernameOrEmail">Username or Email</label>
+        <label htmlFor="username">Username</label>
         <input
           required
-          type="usernameOrEmail"
-          name="usernameOrEmail"
-          value={usernameOrEmail}
+          type="username"
+          name="username"
+          value={username}
           placeholder="Username or Email"
           onChange={this.handleChange}
         />
