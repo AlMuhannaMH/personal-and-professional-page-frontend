@@ -10,6 +10,7 @@ import SignOut from './auth/components/SignOut'
 import UpdateUserInfo from './auth/components/UpdateUserInfo'
 import AlertDismissible from './auth/components/AlertDismissible'
 import Resume from './resume/components/resume'
+import ShowUserInfo from './auth/components/ShowUserInfo'
 
 class App extends Component {
   constructor() {
@@ -17,11 +18,14 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: []
+      alerts: [],
+      profile: [],
     }
   }
 
   setUser = user => this.setState({ user })
+
+  setProfile = profile => this.setState({ profile })
 
   clearUser = () => this.setState({ user: null })
 
@@ -53,6 +57,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/resumes' render={() => (
             <Resume alert={this.alert} user={user} />
+          )} />
+          <Route path='/profile/:username' render={() => (
+            <ShowUserInfo profile={this.state.profile} setProfile={this.setProfile} />
           )} />
         </main>
       </React.Fragment>

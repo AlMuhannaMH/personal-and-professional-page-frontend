@@ -28,7 +28,7 @@ class SignIn extends Component {
     signIn(this.state)
       .then(res => setUser(res.data.user))
       .then(() => alert(messages.signInSuccess, 'success'))
-      .then(() => history.push('/'))
+      .then(() => history.push('/profile/' + this.state.usernameOrEmail))
       .catch(error => {
         console.error(error)
         this.setState({ usernameOrEmail: '', password: '' })

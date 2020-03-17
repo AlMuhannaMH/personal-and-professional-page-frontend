@@ -65,6 +65,13 @@ export const updateUserInfo = (userNewInfo, user) => {
   });
 };
 
-export const editUser = (id, user) => {
-  return axios.patch(`${apiUrl}/users/${id}`, { user });
+export const showUserInfo = (username) => {
+  return axios({
+    url: apiUrl + "/profile/" + username,
+    method: "GET",
+    // headers: {
+    //   Authorization: `Bearer ${user.token}` // FOR EXPRESS
+    //   // 'Authorization': `Token ${user.token}` // FOR RAILS
+    // },
+  });
 };
