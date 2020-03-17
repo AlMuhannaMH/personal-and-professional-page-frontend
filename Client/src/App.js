@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
 
-import AuthenticatedRoute from "./auth/components/AuthenticatedRoute";
-import Header from "./header/Header";
-import SignUp from "./auth/components/SignUp";
-import SignIn from "./auth/components/SignIn";
-import SignOut from "./auth/components/SignOut";
-import ChangePassword from "./auth/components/ChangePassword";
-import AlertDismissible from "./auth/components/AlertDismissible";
-import CreateProfile from "./profile/components/CreateProfile"
+import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
+import Header from './header/Header'
+import SignUp from './auth/components/SignUp'
+import SignIn from './auth/components/SignIn'
+import SignOut from './auth/components/SignOut'
+import ChangePassword from './auth/components/ChangePassword'
+import AlertDismissible from './auth/components/AlertDismissible'
+import ProfileIndex from './profile/index'
 
 class App extends Component {
   constructor() {
@@ -17,24 +17,16 @@ class App extends Component {
 
     this.state = {
       user: null,
-      alerts: [],
-      profile: []
+      alerts: []
     }
-  };
+  }
 
+  setUser = user => this.setState({ user })
 
-  setUser = user => this.setState({ user });
-
-  setProfile = profile => this.setState({ profile });
-
-  clearUser = () => this.setState({ user: null });
+  clearUser = () => this.setState({ user: null })
 
   alert = (message, type) => {
-    this.setState({ alerts: [...this.state.alerts, { message, type }] });
-  };
-
-  handleNewRow = profile => {
-    this.setState({ profile: [...this.state.profile, profile] })
+    this.setState({ alerts: [...this.state.alerts, { message, type }] })
   }
 
   render() {
@@ -44,11 +36,7 @@ class App extends Component {
       <React.Fragment>
         <Header user={user} />
         {alerts.map((alert, index) => (
-          <AlertDismissible
-            key={index}
-            variant={alert.type}
-            message={alert.message}
-          />
+          <AlertDismissible key={index} variant={alert.type} message={alert.message} />
         ))}
         <main className="container">
           <Route path='/sign-up' render={() => (
@@ -63,17 +51,13 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/add-profile' render={() => (
-            < CreateProfile user={user} setProfile={this.profile} handleNewRow={this.handleNewRow} />
-          )} />
-          {/* <Route path='/profile' render={() => (
+          <Route path='/profile' render={() => (
             <ProfileIndex alert={this.alert} setUser={this.setUser} />
-          )} /> */}
+          )} />
         </main>
       </React.Fragment>
-    );
+    )
   }
 }
 
-
-export default App;
+export default App
