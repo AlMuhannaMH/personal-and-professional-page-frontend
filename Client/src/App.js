@@ -9,7 +9,8 @@ import SignIn from "./auth/components/SignIn";
 import SignOut from "./auth/components/SignOut";
 import ChangePassword from "./auth/components/ChangePassword";
 import AlertDismissible from "./auth/components/AlertDismissible";
-import CreateProfile from "./profile/Component/CreateProfile"
+import CreateProfile from "./profile/components/CreateProfile"
+
 class App extends Component {
   constructor() {
     super()
@@ -17,28 +18,24 @@ class App extends Component {
     this.state = {
       user: null,
       alerts: [],
-      Profiles: [{
-        Name: "",
-        Label: "",
-        // Picture : "",
-        Email: "",
-        Phone: "",
-        Website: "",
-        Summary: "",
-        Profiles: [{ Network: "kkk", Username: "k", Url: "kkkk" }]
-      }]
+      profile: []
     }
   };
 
 
   setUser = user => this.setState({ user });
-  setProfile = Profile => this.setState({ Profile });
+
+  setProfile = profile => this.setState({ profile });
 
   clearUser = () => this.setState({ user: null });
 
   alert = (message, type) => {
     this.setState({ alerts: [...this.state.alerts, { message, type }] });
   };
+
+  handleNewRow = profile => {
+    this.setState({ profile: [...this.state.profile, profile] })
+  }
 
   render() {
     const { alerts, user } = this.state
@@ -66,13 +63,12 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-
-<AuthenticatedRoute user={user} path='/change-password' render={() => (
-            < CreateProfile user={user} />
+          <AuthenticatedRoute user={user} path='/add-profile' render={() => (
+            < CreateProfile user={user} setProfile={this.profile} handleNewRow={this.handleNewRow} />
           )} />
-          <Route path='/profile' render={() => (
+          {/* <Route path='/profile' render={() => (
             <ProfileIndex alert={this.alert} setUser={this.setUser} />
-          )} />
+          )} /> */}
         </main>
       </React.Fragment>
     );

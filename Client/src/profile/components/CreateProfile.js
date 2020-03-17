@@ -1,5 +1,5 @@
 import React from "react";
-import { createArticleByApi } from "../api";
+import { createArticleByApi } from "../ApiProfileCall";
 class CreateProfile extends React.Component {
   constructor(props) {
     super(props);
@@ -43,7 +43,8 @@ class CreateProfile extends React.Component {
       network,
       url
     };
-    createProfileByApi(newProfile)
+    console.log(newProfile)
+    createArticleByApi(newProfile)
       .then(response => {
         handleNewRow(newProfile);
         console.log("ok", response);
@@ -64,33 +65,8 @@ class CreateProfile extends React.Component {
     } = this.state.form;
     return (
       <div>
-        {/* <h3>Create Profile</h3>
-                <br /><br />
-                <form onSubmit={this.handleUserSubmit}>
-                    <label>Name:</label>
-                    <input label="title"
-                        placeholder=""
-                        name="title"
-                        value={title}
-                        onChange={this.handleUserChange}
-                        autoFocus={true} />
-                    <label>author</label>
-                    <input
-                        label="author"
-                        name="author"
-                        value={author}
-                        onChange={this.handleUserChange} />
-                    <label>content</label>
-                    <input label="content"
-                        name="content"
-                        value={content}
-                        onChange={this.handleUserChange} />
-                    <button type="submit" content="Submit" >Create</button>
-                </form>
-                <br /><br /> */}
-
         <form onSubmit={this.handleUserSubmit}>
-          <lable>Username</lable>
+          <label>Username</label>
           <input
             label="username"
             name="username"
@@ -99,7 +75,7 @@ class CreateProfile extends React.Component {
             onChange={this.handleUserChange}
             autoFocus={true}
           />
-          <lable>Label:</lable>
+          <label>Label:</label>
           <input
             label="label"
             name="label"
@@ -109,7 +85,7 @@ class CreateProfile extends React.Component {
             autoFocus={true}
           />
 
-          <lable>Email:</lable>
+          <label>Email:</label>
           <input
             label="email"
             placeholder="Enter your Email"
@@ -118,7 +94,7 @@ class CreateProfile extends React.Component {
             onChange={this.handleUserChange}
             autoFocus={true}
           />
-          <lable>Phone:</lable>
+          <label>Phone:</label>
           <input
             label="phone"
             placeholder="Enter Your Phone"
@@ -128,7 +104,7 @@ class CreateProfile extends React.Component {
             autoFocus={true}
           />
 
-          <lable>Website</lable>
+          <label>Website</label>
           <input
             label="website"
             placeholder="Enter Your Websites"
@@ -138,7 +114,7 @@ class CreateProfile extends React.Component {
             autoFocus={true}
           />
 
-          <lable>Summary</lable>
+          <label>Summary</label>
           <input
             placeholder="Enter Your Professional Summary"
             label="summary"
@@ -146,17 +122,16 @@ class CreateProfile extends React.Component {
             value={summary}
             onChange={this.handleUserChange}
           />
-
-          <lable>Network</lable>
+          <label>Network</label>
           <input
-            placeholder="Enter Your Network Name"
+            placeholder="Enter Your Network"
             label="network"
-            name="netWork"
+            name="network"
             value={network}
             onChange={this.handleUserChange}
           />
 
-          <lable>Url</lable>
+          <label>Url</label>
           <input
             placeholder="Enter Your URL"
             label="url"
@@ -173,4 +148,4 @@ class CreateProfile extends React.Component {
     );
   }
 }
-export default createProfile;
+export default CreateProfile;
