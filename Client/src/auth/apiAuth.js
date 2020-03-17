@@ -44,7 +44,7 @@ export const signOut = user => {
   });
 };
 
-export const UpdateUserInfo = (userNewInfo, user) => {
+export const updateUserInfo = (userNewInfo, user) => {
   return axios({
     url: apiUrl + "/update-info",
     method: "PATCH",
@@ -54,6 +54,10 @@ export const UpdateUserInfo = (userNewInfo, user) => {
     },
     data: {
       userNewInfo: {
+        firstName: userNewInfo.firstName,
+        lastName: userNewInfo.lastName,
+        label: userNewInfo.label,
+        phone: userNewInfo.phone,
         old: userNewInfo.oldPassword,
         new: userNewInfo.newPassword
       }

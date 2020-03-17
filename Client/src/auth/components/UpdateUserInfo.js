@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-import { UpdateUserInfo } from '../apiAuth'
+import { updateUserInfo } from '../apiAuth'
 import messages from '../messages'
 
 class UpdateUserInfo extends Component {
@@ -28,13 +28,13 @@ class UpdateUserInfo extends Component {
 
     const { alert, history, user } = this.props;
 
-    UpdateUserInfo(this.state, user)
-      .then(() => alert(messages.changePasswordSuccess, "success"))
+    updateUserInfo(this.state, user)
+      .then(() => alert(messages.changeupdateInfoSuccess, "success"))
       .then(() => history.push("/"))
       .catch(error => {
         console.error(error);
         this.setState({ firstName: "", lastName: "", label: "", phone: "", oldPassword: "", newPassword: "" });
-        alert(messages.changePasswordFailure, "check your password again");
+        alert(messages.updateInfoFailure, "check your password again");
       });
   };
 
