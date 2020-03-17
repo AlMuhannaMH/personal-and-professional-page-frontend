@@ -85,7 +85,6 @@ class SignUp extends Component {
         />
         <label htmlFor="phone">Phone</label>
         <input
-          required
           name="phone"
           value={phone}
           type="text"
