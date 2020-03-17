@@ -30,7 +30,7 @@ class ChangePassword extends Component {
       .catch(error => {
         console.error(error);
         this.setState({ oldPassword: "", newPassword: "" });
-        alert(messages.changePasswordFailure, "danger");
+        alert(messages.changePasswordFailure, "check your password again");
       });
   };
 

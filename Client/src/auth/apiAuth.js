@@ -44,18 +44,18 @@ export const signOut = user => {
   });
 };
 
-export const changePassword = (passwords, user) => {
+export const changePassword = (userNewInfo, user) => {
   return axios({
-    url: apiUrl + "/change-password",
+    url: apiUrl + "/update-info",
     method: "PATCH",
     headers: {
       Authorization: `Bearer ${user.token}` // FOR EXPRESS
       // 'Authorization': `Token ${user.token}` // FOR RAILS
     },
     data: {
-      passwords: {
-        old: passwords.oldPassword,
-        new: passwords.newPassword
+      userNewInfo: {
+        old: userNewInfo.oldPassword,
+        new: userNewInfo.newPassword
       }
     }
   });
