@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { signUp, signIn } from '../apiAuth'
-import messages from '../messages'
+import { addProfile } from '../apiResume'
+// import messages from '../messages'
 
 class CreateNewResume extends Component {
   constructor() {
@@ -10,37 +10,37 @@ class CreateNewResume extends Component {
 
     this.state = {
       work: [{
-        company: "",
-        position: "",
-        website: "",
-        startDate: "",
-        endDate: "",
-        summary: "",
+        workCompany: "",
+        workPosition: "",
+        workWebsite: "",
+        workStartDate: "",
+        workEndDate: "",
+        workSummary: ""
       }],
       volunteer: [{
-        organization: "",
-        position: "",
-        website: "",
-        startDate: "",
-        endDate: "",
-        summary: "",
+        volunteerOrganization: "",
+        volunteerPosition: "",
+        volunteerWebsite: "",
+        volunteerStartDate: "",
+        volunteerEndDate: "",
+        volunteerSummary: "",
       }],
       education: [{
-        institution: "",
-        major: "",
-        studyType: "",
-        startDate: "",
-        endDate: "",
-        gpa: 0,
-        summary: "",
+        educationInstitution: "",
+        educationMajor: "",
+        educationStudyType: "",
+        educationStartDate: "",
+        educationEndDate: "",
+        educationGpa: "",
+        educationSummary: ""
       }],
       skills: [{
-        name: "",
-        level: "",
+        skillsName: "",
+        skillsLevel: ""
       }],
       languages: [{
-        language: "",
-        fluency: ""
+        languageName: "",
+        languagesFluency: "",
       }],
     }
   }
@@ -51,233 +51,301 @@ class CreateNewResume extends Component {
 
   onCreateNewResume = event => {
     event.preventDefault()
+    // alert
+    const { history, setResume } = this.props
 
-    const { alert, history, setUser } = this.props
-
-    signUp(this.state)
-      .then(() => signIn(this.state))
-      .then(res => setUser(res.data.user))
-      .then(() => alert(messages.signUpSuccess, 'success'))
+    addProfile(this.state)
+      // .then(() => signIn(this.state))
+      .then(res => setResume(res.data.resume))
+      // .then(() => alert(messages.signUpSuccess, 'success'))
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({
           work: [{
-            company: "",
-            position: "",
-            website: "",
-            startDate: "",
-            endDate: "",
-            summary: "",
+            workCompany: "",
+            workPosition: "",
+            workWebsite: "",
+            workStartDate: "",
+            workEndDate: "",
+            workSummary: ""
           }],
           volunteer: [{
-            organization: "",
-            position: "",
-            website: "",
-            startDate: "",
-            endDate: "",
-            summary: "",
+            volunteerOrganization: "",
+            volunteerPosition: "",
+            volunteerWebsite: "",
+            volunteerStartDate: "",
+            volunteerEndDate: "",
+            volunteerSummary: "",
           }],
           education: [{
-            institution: "",
-            major: "",
-            studyType: "",
-            startDate: "",
-            endDate: "",
-            gpa: 0,
-            summary: "",
+            educationInstitution: "",
+            educationMajor: "",
+            educationStudyType: "",
+            educationStartDate: "",
+            educationEndDate: "",
+            educationGpa: "",
+            educationSummary: ""
           }],
           skills: [{
-            name: "",
-            level: "",
+            skillsName: "",
+            skillsLevel: ""
           }],
           languages: [{
-            language: "",
-            fluency: ""
+            languageName: "",
+            languagesFluency: "",
           }],
         })
-        alert(messages.signUpFailure, 'danger')
+        // alert(messages.signUpFailure, 'danger')
       })
   }
 
   render() {
-    const { company, position, website, startDate, endDate, summary } = this.state.work
-    const { organization, position, website, startDate, endDate, summary } = this.state.volunteer
-    const { institution, major, studyType, startDate, endDate, gpa, Number, summary } = this.state.education
-    const { name, level } = this.state.skills
-    const { language, fluency } = this.state.languages
+    const {
+      workCompany,
+      workPosition,
+      workWebsite,
+      workStartDate,
+      workEndDate,
+      workSummary } = this.state.work
+    const { volunteerOrganization,
+      volunteerPosition,
+      volunteerWebsite,
+      volunteerStartDate,
+      volunteerEndDate,
+      volunteerSummary } = this.state.volunteer
+    const { educationInstitution,
+      educationMajor,
+      educationStudyType,
+      educationStartDate,
+      educationEndDate,
+      educationGpa,
+      educationSummary } = this.state.education
+    const { skillsName,
+      skillsLevel } = this.state.skills
+    const { languageName,
+      languagesFluency } = this.state.languages
 
     return (
       <div>
-        <div>
-          <form>
-            <h3>Work Expirance:</h3>
-            {/* <label>
-              Company Name:
-                <input type="text" name="companyName" />
-            </label> */}
-            <label htmlFor="company">Company Name:</label>
-            <input
-              required
-              type="company"
-              name="company"
-              value={company}
-              placeholder="company"
-              onChange={this.handleChange}
-            />
-            <br />
-            <label>
-              Position:
-                <input type="text" name="position" />
-            </label><br />
-            <label>
-              Website:
-                <input type="text" name="website" />
-            </label><br />
-            <label>
-              Start Date:
-                <input type="date" name="startDate" />
-            </label><br />
-            <label>
-              EndDate:
-                <input type="date" name="endDate" />
-            </label><br />
-            <label>
-              Summary:
-                <input type="text" name="summary" />
-            </label><br />
-            {/* <input type="submit" value="Submit" /> */}
-            <hr />
-            <h3>Volunteer:</h3>
-            <label>
-              Organization:
-                <input type="text" name="organization" />
-            </label><br />
-            <label>
-              Position:
-                <input type="text" name="position" />
-            </label><br />
-            <label>
-              Website:
-                <input type="text" name="website" />
-            </label><br />
-            <label>
-              Start Date:
-                <input type="date" name="startDate" />
-            </label><br />
-            <label>
-              EndDate:
-                <input type="date" name="endDate" />
-            </label><br />
-            <label>
-              Summary:
-                <input type="text" name="summary" />
-            </label><br />
-            {/* <input type="submit" value="Submit" /> */}
-            <hr />
-            <h3>Education:</h3>
-            <label>
-              Institution:
-                <input type="text" name="institution" />
-            </label><br />
-            <label>
-              Major:
-                <input type="text" name="major" />
-            </label><br />
-            <label>
-              Study Type:
-                <input type="text" name="studyType" />
-            </label><br />
-            <label>
-              Start Date:
-                <input type="date" name="startDate" />
-            </label><br />
-            <label>
-              EndDate:
-                <input type="date" name="endDate" />
-            </label><br />
-            <label>
-              GPA:
-                <input type="number" name="gpa" />
-            </label><br />
-            <label>
-              Summary:
-                <input type="text" name="summary" />
-            </label><br />
-            {/* <input type="submit" value="Submit" /> */}
-            <hr />
-            <h3>Awards:</h3>
-            <label>
-              Title:
-                <input type="text" name="title" />
-            </label><br />
-            <label>
-              Date:
-                <input type="date" name="date" />
-            </label><br />
-            <label>
-              Awarder:
-                <input type="text" name="awarder" />
-            </label><br />
-            <label>
-              Summary:
-                <input type="text" name="summary" />
-            </label><br />
-            {/* <input type="submit" value="Submit" /> */}
-            <hr />
-            <h3>Publications:</h3>
-            <label>
-              Name:
-                <input type="text" name="name" />
-            </label><br />
-            <label>
-              Publisher:
-                <input type="text" name="publisher" />
-            </label><br />
-            <label>
-              Release Date:
-                <input type="date" name="releaseDate" />
-            </label><br />
-            <label>
-              Website:
-                <input type="text" name="website" />
-            </label><br />
-            <label>
-              Summary:
-                <input type="text" name="summary" />
-            </label><br />
-            {/* <input type="submit" value="Submit" /> */}
-            <hr />
-            <label>Skills:</label>
-            <label>
-              Name:
-                <input type="text" name="name" />
-            </label><br />
-            <label>
-              Level:
-                <input type="text" name="level" />
-            </label><br />
-            {/* <input type="submit" value="Submit" /> */}
-            <hr />
-            <h3>Languages:</h3>
-            <label>
-              Language:
-                <input type="text" name="languages" />
-            </label><br />
-            <label>
-              Fluency:
-                <input type="text" name="fluency" />
-            </label><br />
-            {/* <input type="submit" value="Submit" /> */}
-            <hr />
-            <h3>Interests:</h3>
-            <label>
-              Name:
-                <input type="text" name="name" />
-            </label><br />
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
+        <form>
+          <h3>Work Expirance</h3>
+          <label htmlFor="workCompany">Company Name</label>
+          <input
+            type="text"
+            name="workCompany"
+            value={workCompany}
+            placeholder="work Company"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="workPosition">position Name</label>
+          <input
+            type="text"
+            name="workPosition"
+            value={workPosition}
+            placeholder="workPosition"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="workWebsite">website Name</label>
+          <input
+            type="text"
+            name="workWebsite"
+            value={workWebsite}
+            placeholder="workWebsite"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="workStartDate">start Date</label>
+          <input
+            type="date"
+            name="workStartDate"
+            value={workStartDate}
+            placeholder="workStartDate"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="workEndDate">end Date</label>
+          <input
+            type="date"
+            name="workEndDate"
+            value={workEndDate}
+            placeholder="workEndDate"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="workSummary">summary</label>
+          <input
+            type="text"
+            name="workSummary"
+            value={workSummary}
+            placeholder="workSummary"
+            onChange={this.handleChange}
+          />
+          <br />
+          <hr />
+          <h3>Volunteer:</h3>
+          <label htmlFor="volunteerOrganization">Company Name</label>
+          <input
+            type="text"
+            name="volunteerOrganization"
+            value={volunteerOrganization}
+            placeholder="volunteerOrganization"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="volunteerPosition">position Name</label>
+          <input
+            type="text"
+            name="volunteerPosition"
+            value={volunteerPosition}
+            placeholder="volunteerPosition"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="volunteerWebsite">website Name</label>
+          <input
+            type="text"
+            name="volunteerWebsite"
+            value={volunteerWebsite}
+            placeholder="website"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="volunteerStartDate">start Date</label>
+          <input
+            type="date"
+            name="volunteerStartDate"
+            value={volunteerStartDate}
+            placeholder="startDate"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="volunteerEndDate">end Date</label>
+          <input
+            type="date"
+            name="volunteerEndDate"
+            value={volunteerEndDate}
+            placeholder="volunteerEndDate"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="volunteerSummary">summary</label>
+          <input
+            type="text"
+            name="volunteerSummary"
+            value={volunteerSummary}
+            placeholder="volunteerSummary"
+            onChange={this.handleChange}
+          />
+          <br />
+          <hr />
+          <h3>Education:</h3>
+          <label htmlFor="educationInstitution">institution</label>
+          <input
+            type="text"
+            name="educationInstitution"
+            value={educationInstitution}
+            placeholder="educationInstitution"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="educationMajor">major</label>
+          <input
+            type="text"
+            name="educationMajor"
+            value={educationMajor}
+            placeholder="educationMajor"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="educationStudyType">study Type</label>
+          <input
+            type="text"
+            name="educationStudyType"
+            value={educationStudyType}
+            placeholder="educationStudyType"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="educationStartDate">start Date</label>
+          <input
+            type="date"
+            name="educationStartDate"
+            value={educationStartDate}
+            placeholder="educationStartDate"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="educationEndDate">end Date</label>
+          <input
+            type="date"
+            name="educationEndDate"
+            value={educationEndDate}
+            placeholder="educationEndDate"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="educationEndDate">gpa</label>
+          <input
+            type="text"
+            name="educationEndDate"
+            value={educationGpa}
+            placeholder="educationEndDate"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="educationSummary">summary</label>
+          <input
+            type="text"
+            name="educationSummary"
+            value={educationSummary}
+            placeholder="educationSummary"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label>Skills:</label>
+          <label htmlFor="skillsName">skills Name</label>
+          <input
+            type="text"
+            name="skillsName"
+            value={skillsName}
+            placeholder="skills Name"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="skillsLevel">skills level</label>
+          <input
+            type="text"
+            name="skillsLevel"
+            value={skillsLevel}
+            placeholder="skills skillsLevel"
+            onChange={this.handleChange}
+          />
+          <br />
+          <hr />
+          <h3>Languages</h3>
+          <label htmlFor="languageName">languages</label>
+          <input
+            type="text"
+            name="languageName"
+            value={languageName}
+            placeholder="languageName"
+            onChange={this.handleChange}
+          />
+          <br />
+          <label htmlFor="languagesFluency">fluency</label>
+          <input
+            type="text"
+            name="languagesFluency"
+            value={languagesFluency}
+            placeholder="languagesFluency"
+            onChange={this.handleChange}
+          />
+          <br />
+          <button type="submit">Sign Up</button>
+        </form>
       </div>
     )
   }
