@@ -3,26 +3,33 @@ import { withRouter } from "react-router-dom";
 import { getResumes } from '../apiResume'
 // import messages from '../messages'
 class ShowAllResume extends Component {
+   
     componentDidMount() {
         // console.log(this.props.match.params);
-        getResumes(this.props.match.params.resume)
+        getResumes()
             .then((response) => {
-                this.props.setResume(response.data.resume);
+                console.log(response);
+                console.log(response.data.resumes[0].workPosition);
+                
+                
+                this.props.setResume(response.data);
             })
             .catch((error) => {
                 console.log('API ERROR:', error);
             });
+    
     }
     render() {
+        
         return (
             <>
                 {/* <h3>All Profile</h3> */}
                 {/* {allProfile} */}
                 <main >
                     <div className="inner">
-                       <ul> 
+                       {/* <ul> 
                            <h3>Work Expirence:</h3>
-                        <li>{this.props.resume.workCompany}</li>
+                        <li>{this.props.resume.work.workPosition}</li>
                         {this.props.resume.workPosition}
                         {this.props.resume.workWebsite}
                         <li>{this.props.resume.workStartDate}</li> 
@@ -70,7 +77,8 @@ class ShowAllResume extends Component {
                       
                      
                        <ul/>
-                        </ul>
+                        </ul> */}
+                         <h3>Education :</h3>
                     </div>
                 </main>
             </>
