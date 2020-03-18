@@ -68,6 +68,7 @@ class App extends Component {
           <Route path='/profile/:username' render={() => (
             <ShowUserInfo profile={profile} setProfile={this.setProfile} />
           )} />
+          <CreateNewResume></CreateNewResume>
         </main>
       </React.Fragment>
     )

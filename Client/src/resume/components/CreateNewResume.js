@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
-
-import { addProfile } from '../apiResume'
-// import messages from '../messages'
-
+import { signUp, signIn } from '../apiAuth'
+import messages from '../messages'
 class CreateNewResume extends Component {
   constructor() {
     super()
-
     this.state = {
       work: [{
         workCompany: "",
@@ -44,20 +41,16 @@ class CreateNewResume extends Component {
       }],
     }
   }
-
   handleChange = event => this.setState({
     [event.target.name]: event.target.value
   })
-
   onCreateNewResume = event => {
     event.preventDefault()
-    // alert
-    const { history, setResume } = this.props
-
-    addProfile(this.state)
-      // .then(() => signIn(this.state))
-      .then(res => setResume(res.data.resume))
-      // .then(() => alert(messages.signUpSuccess, 'success'))
+    const { alert, history, setUser } = this.props
+    signUp(this.state)
+      .then(() => signIn(this.state))
+      .then(res => setUser(res.data.user))
+      .then(() => alert(messages.signUpSuccess, 'success'))
       .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
@@ -99,256 +92,234 @@ class CreateNewResume extends Component {
         // alert(messages.signUpFailure, 'danger')
       })
   }
-
   render() {
-    const {
-      workCompany,
-      workPosition,
-      workWebsite,
-      workStartDate,
-      workEndDate,
-      workSummary } = this.state.work
-    const { volunteerOrganization,
-      volunteerPosition,
-      volunteerWebsite,
-      volunteerStartDate,
-      volunteerEndDate,
-      volunteerSummary } = this.state.volunteer
-    const { educationInstitution,
-      educationMajor,
-      educationStudyType,
-      educationStartDate,
-      educationEndDate,
-      educationGpa,
-      educationSummary } = this.state.education
-    const { skillsName,
-      skillsLevel } = this.state.skills
-    const { languageName,
-      languagesFluency } = this.state.languages
-
+    const { company, position, website, startDate, endDate, summary } = this.state.work
+    const { organization, position, website, startDate, endDate, summary } = this.state.volunteer
+    const { institution, major, studyType, startDate, endDate, gpa, Number, summary } = this.state.education
+    const { name, level } = this.state.skills
+    const { language, fluency } = this.state.languages
     return (
-      <div>
-        <form>
-          <h3>Work Expirance</h3>
-          <label htmlFor="workCompany">Company Name</label>
-          <input
-            type="text"
-            name="workCompany"
-            value={workCompany}
-            placeholder="work Company"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="workPosition">position Name</label>
-          <input
-            type="text"
-            name="workPosition"
-            value={workPosition}
-            placeholder="workPosition"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="workWebsite">website Name</label>
-          <input
-            type="text"
-            name="workWebsite"
-            value={workWebsite}
-            placeholder="workWebsite"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="workStartDate">start Date</label>
-          <input
-            type="date"
-            name="workStartDate"
-            value={workStartDate}
-            placeholder="workStartDate"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="workEndDate">end Date</label>
-          <input
-            type="date"
-            name="workEndDate"
-            value={workEndDate}
-            placeholder="workEndDate"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="workSummary">summary</label>
-          <input
-            type="text"
-            name="workSummary"
-            value={workSummary}
-            placeholder="workSummary"
-            onChange={this.handleChange}
-          />
-          <br />
-          <hr />
-          <h3>Volunteer:</h3>
-          <label htmlFor="volunteerOrganization">Company Name</label>
-          <input
-            type="text"
-            name="volunteerOrganization"
-            value={volunteerOrganization}
-            placeholder="volunteerOrganization"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="volunteerPosition">position Name</label>
-          <input
-            type="text"
-            name="volunteerPosition"
-            value={volunteerPosition}
-            placeholder="volunteerPosition"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="volunteerWebsite">website Name</label>
-          <input
-            type="text"
-            name="volunteerWebsite"
-            value={volunteerWebsite}
-            placeholder="website"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="volunteerStartDate">start Date</label>
-          <input
-            type="date"
-            name="volunteerStartDate"
-            value={volunteerStartDate}
-            placeholder="startDate"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="volunteerEndDate">end Date</label>
-          <input
-            type="date"
-            name="volunteerEndDate"
-            value={volunteerEndDate}
-            placeholder="volunteerEndDate"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="volunteerSummary">summary</label>
-          <input
-            type="text"
-            name="volunteerSummary"
-            value={volunteerSummary}
-            placeholder="volunteerSummary"
-            onChange={this.handleChange}
-          />
-          <br />
-          <hr />
-          <h3>Education:</h3>
-          <label htmlFor="educationInstitution">institution</label>
-          <input
-            type="text"
-            name="educationInstitution"
-            value={educationInstitution}
-            placeholder="educationInstitution"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="educationMajor">major</label>
-          <input
-            type="text"
-            name="educationMajor"
-            value={educationMajor}
-            placeholder="educationMajor"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="educationStudyType">study Type</label>
-          <input
-            type="text"
-            name="educationStudyType"
-            value={educationStudyType}
-            placeholder="educationStudyType"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="educationStartDate">start Date</label>
-          <input
-            type="date"
-            name="educationStartDate"
-            value={educationStartDate}
-            placeholder="educationStartDate"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="educationEndDate">end Date</label>
-          <input
-            type="date"
-            name="educationEndDate"
-            value={educationEndDate}
-            placeholder="educationEndDate"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="educationEndDate">gpa</label>
-          <input
-            type="text"
-            name="educationEndDate"
-            value={educationGpa}
-            placeholder="educationEndDate"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="educationSummary">summary</label>
-          <input
-            type="text"
-            name="educationSummary"
-            value={educationSummary}
-            placeholder="educationSummary"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label>Skills:</label>
-          <label htmlFor="skillsName">skills Name</label>
-          <input
-            type="text"
-            name="skillsName"
-            value={skillsName}
-            placeholder="skills Name"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="skillsLevel">skills level</label>
-          <input
-            type="text"
-            name="skillsLevel"
-            value={skillsLevel}
-            placeholder="skills skillsLevel"
-            onChange={this.handleChange}
-          />
-          <br />
-          <hr />
-          <h3>Languages</h3>
-          <label htmlFor="languageName">languages</label>
-          <input
-            type="text"
-            name="languageName"
-            value={languageName}
-            placeholder="languageName"
-            onChange={this.handleChange}
-          />
-          <br />
-          <label htmlFor="languagesFluency">fluency</label>
-          <input
-            type="text"
-            name="languagesFluency"
-            value={languagesFluency}
-            placeholder="languagesFluency"
-            onChange={this.handleChange}
-          />
-          <br />
-          <button type="submit">Sign Up</button>
-        </form>
-      </div>
+        <div>
+          <form>
+            <h3>Work Expirance</h3>
+            <label htmlFor="company">Company Name</label>
+            <input
+              type="company"
+              name="company"
+              value={work.company}
+              placeholder="company"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="position">position Name</label>
+            <input
+              type="position"
+              name="position"
+              value={work.position}
+              placeholder="position"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="website">website Name</label>
+            <input
+              type="website"
+              name="website"
+              value={work.website}
+              placeholder="website"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="startDate">start Date</label>
+            <input
+              type="startDate"
+              name="startDate"
+              value={work.startDate}
+              placeholder="startDate"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="endDate">end Date</label>
+            <input
+              type="endDate"
+              name="endDate"
+              value={work.endDate}
+              placeholder="endDate"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="summary">summary</label>
+            <input
+              type="summary"
+              name="summary"
+              value={work.summary}
+              placeholder="summary"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <hr/>
+            <h3>Volunteer:</h3>
+            <label htmlFor="company">Company Name</label>
+            <input
+              type="company"
+              name="company"
+              value={volunteer.company}
+              placeholder="company"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="position">position Name</label>
+            <input
+              type="position"
+              name="position"
+              value={volunteer.position}
+              placeholder="position"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="website">website Name</label>
+            <input
+              type="website"
+              name="website"
+              value={volunteer.website}
+              placeholder="website"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="startDate">start Date</label>
+            <input
+              type="startDate"
+              name="startDate"
+              value={volunteer.startDate}
+              placeholder="startDate"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="endDate">end Date</label>
+            <input
+              type="endDate"
+              name="endDate"
+              value={volunteer.endDate}
+              placeholder="endDate"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="summary">summary</label>
+            <input
+              type="summary"
+              name="summary"
+              value={volunteer.summary}
+              placeholder="summary"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <hr />
+            <h3>Education:</h3>
+            <label htmlFor="institution">institution</label>
+            <input
+              type="institution"
+              name="institution"
+              value={education.institution}
+              placeholder="institution"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="major">major</label>
+            <input
+              type="major"
+              name="major"
+              value={education.major}
+              placeholder="major"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="studyType">study Type</label>
+            <input
+              type="studyType"
+              name="studyType"
+              value={education.studyType}
+              placeholder="studyType"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="startDate">start Date</label>
+            <input
+              type="startDate"
+              name="startDate"
+              value={education.startDate}
+              placeholder="startDate"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="endDate">end Date</label>
+            <input
+              type="endDate"
+              name="endDate"
+              value={education.endDate}
+              placeholder="endDate"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="gpa">gpa</label>
+            <input
+              type="gpa"
+              name="gpa"
+              value={education.gpa}
+              placeholder="gpa"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="summary">summary</label>
+            <input
+              type="summary"
+              name="summary"
+              value={education.summary}
+              placeholder="summary"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label>Skills:</label>
+            <label htmlFor="name">skills Name</label>
+            <input
+              type="name"
+              name="name"
+              value={skills.name}
+              placeholder="skills Name"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="level">skills level</label>
+            <input
+              type="level"
+              name="level"
+              value={skills.level}
+              placeholder="skills level"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <hr/>
+            <h3>Languages</h3>
+            <label htmlFor="languages">languages</label>
+            <input
+              type="languages"
+              name="languages"
+              value={languages.languages}
+              placeholder="languages"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <label htmlFor="fluency">fluency</label>
+            <input
+              type="fluency"
+              name="fluency"
+              value={languages.fluency}
+              placeholder="fluency"
+              onChange={this.handleChange}
+            />
+            <br/>
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
     )
   }
 }
-
 export default withRouter(CreateNewResume)
