@@ -38,10 +38,10 @@ class App extends Component {
   }
 
   render() {
-    const { alerts, user, setResume, profile,resume } = this.state
+    const { alerts, user, setResume, profile, resume } = this.state
 
     return (
-      <React.Fragment>
+      <>
         <Header user={user} profile={profile} />
         {alerts.map((alert, index) => (
           <AlertDismissible key={index} variant={alert.type} message={alert.message} />
@@ -69,7 +69,7 @@ class App extends Component {
             <ShowAllResume resume={resume} setResume={this.setResume} />
           )} />
         </main>
-      </React.Fragment>
+      </>
     )
   }
 }
