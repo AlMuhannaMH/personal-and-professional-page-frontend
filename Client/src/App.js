@@ -11,7 +11,7 @@ import UpdateUserInfo from './auth/components/UpdateUserInfo'
 import AlertDismissible from './auth/components/AlertDismissible'
 import ShowUserInfo from './auth/components/ShowUserInfo'
 import CreateNewResume from './resume/components/CreateNewResume'
-// import ShowAllResume from './resume/components/ShowAllResume'
+import ShowAllResume from './resume/components/ShowAllResume'
 
 class App extends Component {
   constructor() {
@@ -38,7 +38,7 @@ class App extends Component {
   }
 
   render() {
-    const { alerts, user, setResume, profile } = this.state
+    const { alerts, user, setResume, profile,resume } = this.state
 
     return (
       <React.Fragment>
@@ -65,9 +65,9 @@ class App extends Component {
           <Route path='/profile/:username' render={() => (
             <ShowUserInfo profile={profile} setProfile={this.setProfile} />
           )} />
-          {/* <Route path='/profile/:username' render={() => (
-            <ShowAllResume resume={resume} setProfile={this.setProfile} />
-          )} /> */}
+          <Route path='/show-resumes' render={() => (
+            <ShowAllResume resume={resume} setResume={this.setResume} />
+          )} />
         </main>
       </React.Fragment>
     )
