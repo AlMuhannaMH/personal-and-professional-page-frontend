@@ -75,3 +75,7 @@ export const showUserInfo = (username) => {
     // },
   });
 };
+
+export const deleteUserAcountFromTheDB = id => {
+  return axios.delete(`${apiUrl}/deleteUserProfile/${id}`);
+};

@@ -10,6 +10,7 @@ export const getResumes = () => {
 export const addResumes = resumes => {
   return axios.post(`${apiUrl}/resumes`, resumes);
 };
+
 // export const newRequest = req => {
 //   return axios({
 //     url: `${apiUrl}/resumes`,

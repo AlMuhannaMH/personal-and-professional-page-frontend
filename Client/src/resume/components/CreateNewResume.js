@@ -15,40 +15,19 @@ class CreateNewResume extends Component {
       language: {},
     }
   }
-  // nameWork: '2',
-  // typeWork: '2',
-  // nameEdu: '2',
-  // typeEdu: '2'
-  // {
-  // resume:{
-  // ...this.state.work,
-  //   // nameWork: '2',    typeWork: '2'
-  // ...this.state.edu
-  //   //nameEdu: '2',    typeEdu: '2'
-  // }
-  // }
-  //      test1,   work
-  //      test2,   edu
+
   handleChange = (event, parentObj) => {
     let newName = event.target.value
     let changedKey = event.target.name
     this.setState({
-      //      work :{name: '1',      type: '1'},   name: '2'
       [parentObj]: { ...this.state[parentObj], [changedKey]: newName }
     })
   }
 
-  // handleChange = event => this.setState({
-  //   [event.target.name]: event.target.value
-  // })
-
   onCreateNewResume = event => {
     event.preventDefault()
-    this.setState({ work: {}, edu: {} })
     // // alert,  history, 
-    // const { setResume } = this.props
-    // console.log(this.state);
-    // this.state.map
+    const { setResume, history } = this.props
 
     addResumes({
       "resume": {
@@ -59,18 +38,12 @@ class CreateNewResume extends Component {
         ...this.state.language,
       }
     })
-      //   resume:{
-      // ...this.state.work,
-      //   // nameWork: '2',    typeWork: '2'
-      // ...this.state.edu
-      //   //nameEdu: '2',    typeEdu: '2'
-      // }
       .then(res => {
         console.log('RES', res);
-        // setResume(res.data)
+        setResume(res.data.resume)
       })
       // .then(() => alert(messages.signUpSuccess, 'success'))
-      // .then(() => history.push('/'))
+      .then(() => history.push('/show-resumes'))
       .catch(error => {
         console.error(error)
         this.setState({
@@ -85,33 +58,9 @@ class CreateNewResume extends Component {
   }
 
   render() {
-    // const {
-    //   workCompany,
-    //   workPosition,
-    //   workWebsite,
-    //   workStartDate,
-    //   workEndDate,
-    //   workSummary } = this.state
-    // const { volunteerOrganization,
-    //   volunteerPosition,
-    //   volunteerWebsite,
-    //   volunteerStartDate,
-    //   volunteerEndDate,
-    //   volunteerSummary } = this.state
-    // const { educationInstitution,
-    //   educationMajor,
-    //   educationStudyType,
-    //   educationStartDate,
-    //   educationEndDate,
-    //   educationGpa,
-    //   educationSummary } = this.state
-    // const { skillsName,
-    //   skillsLevel } = this.state
-    // const { languageName,
-    //   languagesFluency } = this.state
     const { work, education, volunteer, skills, language } = this.state
     return (
-      <div>
+      <>
         <form className='auth-form' onSubmit={this.onCreateNewResume}>
           <h3>Work Expirance</h3>
           <label htmlFor="workCompany">Company Name</label>
@@ -370,7 +319,7 @@ return <input type={type}
           <br />
           <button type="submit">Create</button>
         </form>
-      </div >
+      </>
     )
   }
 }

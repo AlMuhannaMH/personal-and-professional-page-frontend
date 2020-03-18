@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-import { updateUserInfo } from '../apiAuth'
+import { updateUserInfo, deleteUserAcountFromTheDB } from '../apiAuth'
 import messages from '../messages'
 
 class UpdateUserInfo extends Component {
@@ -38,70 +38,93 @@ class UpdateUserInfo extends Component {
       });
   };
 
+  deleteUserAcount = () => {
+    const { alert, history, user, clearUser } = this.props;
+    deleteUserAcountFromTheDB(user._id)
+      .then(() => history.push("/"))
+      .finally(() => clearUser())
+      .catch(error => {
+        console.error(error);
+        this.setState({ firstName: "", lastName: "", label: "", phone: "", oldPassword: "", newPassword: "" });
+        alert(messages.updateInfoFailure, "check your password again");
+      });
+  };
+
   render() {
+    console.log(this.props.user._id);
+
     const { firstName, lastName, label, phone, oldPassword, newPassword } = this.state
 
     return (
-      <form className="auth-form" onSubmit={this.onUpdateUserInfo}>
-        <h3>Update User Info</h3>
+      <>
+        <form className="auth-form" onSubmit={this.onUpdateUserInfo}>
+          <h3>Update User Info</h3>
 
-        <label htmlFor="firstName">First Name</label>
-        <input
-          required
-          name="firstName"
-          value={firstName}
-          type="text"
-          placeholder="New First Name"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          required
-          name="lastName"
-          value={lastName}
-          type="text"
-          placeholder="New Last Name"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="label">Label</label>
-        <input
-          required
-          name="label"
-          value={label}
-          type="text"
-          placeholder="New Label"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="phone">phone</label>
-        <input
-          required
-          name="phone"
-          value={phone}
-          type="text"
-          placeholder="New phone"
-          onChange={this.handleChange}
-        />
+          <label htmlFor="firstName">First Name</label>
+          <input
+            required
+            name="firstName"
+            value={firstName}
+            type="text"
+            placeholder="New First Name"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            required
+            name="lastName"
+            value={lastName}
+            type="text"
+            placeholder="New Last Name"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="label">Label</label>
+          <input
+            required
+            name="label"
+            value={label}
+            type="text"
+            placeholder="New Label"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="phone">phone</label>
+          <input
+            required
+            name="phone"
+            value={phone}
+            type="text"
+            placeholder="New phone"
+            onChange={this.handleChange}
+          />
 
-        <label htmlFor="oldpw">Old Password</label>
-        <input
-          required
-          name="oldPassword"
-          value={oldPassword}
-          type="password"
-          placeholder="Old Password"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="newPassword">New Password</label>
-        <input
-          required
-          name="newPassword"
-          value={newPassword}
-          type="password"
-          placeholder="New Password"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Update Your Info</button>
-      </form>
+          <label htmlFor="oldpw">Old Password</label>
+          <input
+            required
+            name="oldPassword"
+            value={oldPassword}
+            type="password"
+            placeholder="Old Password"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="newPassword">New Password</label>
+          <input
+            required
+            name="newPassword"
+            value={newPassword}
+            type="password"
+            placeholder="New Password"
+            onChange={this.handleChange}
+          />
+          <button type="submit">Update Your Info</button>
+        </form>
+        <hr />
+        <br />
+        <br />
+        <br />
+        <br />
+        <label htmlFor="deleteAcount">Please delete my acount:  </label>
+        <button type="submit" onClick={this.deleteUserAcount}>Delete</button>
+      </>
     );
   }
 }

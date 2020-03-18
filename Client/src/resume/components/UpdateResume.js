@@ -9,12 +9,11 @@ class UpdateUserInfo extends Component {
     super()
 
     this.state = {
-      firstName: "",
-      lastName: "",
-      label: "",
-      phone: "",
-      oldPassword: "",
-      newPassword: ""
+      work: {},
+      volunteer: {},
+      education: {},
+      skills: {},
+      language: {},
     };
   }
 
@@ -33,21 +32,23 @@ class UpdateUserInfo extends Component {
       .then(() => history.push("/"))
       .catch(error => {
         console.error(error);
-        this.setState({ work:{},
-            volunteer: {},
-            education: {},
-            skills: {},
-            language: {}, });
+        this.setState({
+          work: {},
+          volunteer: {},
+          education: {},
+          skills: {},
+          language: {},
+        });
         alert(messages.updateInfoFailure, "check your password again");
       });
   };
 
-  render() { 
-    const { work: {},
-    volunteer: {},
-    education: {},
-    skills: {},
-    language: {}, } = this.state
+  render() {
+    const { work: { },
+      volunteer: { },
+      education: { },
+      skills: { },
+      language: { }, } = this.state
 
     return (
       <form className="auth-form" onSubmit={this.onUpdateUserInfo}>
