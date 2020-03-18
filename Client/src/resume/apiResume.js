@@ -1,22 +1,40 @@
 import apiUrl from "../apiConfig";
 import axios from "axios";
 
-//Get Profile
-export const getProfile = () => {
-  return axios.get(`${apiUrl}/profile`);
+//Get Resumes
+export const getResumes = () => {
+  return axios.get(`${apiUrl}/resumes`);
 };
 
-//Add Profile to the User
-export const addProfile = profile => {
-  return axios.post(`${apiUrl}/profile`, { profile });
+//Add Resumes to the User
+export const addResumes = resumes => {
+  return axios.post(`${apiUrl}/resumes`, resumes);
+};
+// export const newRequest = req => {
+//   return axios({
+//     url: `${apiUrl}/resumes`,
+//     method: 'POST',
+//     data: {
+//       resume: {
+//         assistantId: req.assistantId,
+//         date: req.date,
+//         carDescription: req.carDescription,
+//         specialNeeds: req.specialNeeds,
+//         package: req.package,
+//         trip: {
+//           start: req.pickup,
+//           destination: req.dropoff
+//         },
+//       }
+//     }
+//   })
+
+// Update existing Resumes
+export const updateResumes = (resumes, id) => {
+  return axios.patch(`${apiUrl}/resumes/${id}`, resumes);
 };
 
-// Update existing Profile
-export const updateProfile = (profile, id) => {
-  return axios.patch(`${apiUrl}/profile/${id}`, { profile });
-};
-
-// Delete Profile by id
-export const deleteProfile = id => {
-  return axios.delete(`${apiUrl}/profile/${id}`);
+// Delete Resumes by id
+export const deleteResumes = id => {
+  return axios.delete(`${apiUrl}/resumes/${id}`);
 };

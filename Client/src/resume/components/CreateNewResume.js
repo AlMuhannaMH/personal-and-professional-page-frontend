@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { addProfile } from '../apiResume'
+import { addResumes } from '../apiResume'
 // import messages from '../messages'
 
 class CreateNewResume extends Component {
@@ -9,44 +9,35 @@ class CreateNewResume extends Component {
     super()
 
     this.state = {
-      work: [{
-        workCompany: "",
-        workPosition: "",
-        workWebsite: "",
-        workStartDate: "",
-        workEndDate: "",
-        workSummary: ""
-      }],
-      volunteer: [{
-        volunteerOrganization: "",
-        volunteerPosition: "",
-        volunteerWebsite: "",
-        volunteerStartDate: "",
-        volunteerEndDate: "",
-        volunteerSummary: "",
-      }],
-      education: [{
-        educationInstitution: "",
-        educationMajor: "",
-        educationStudyType: "",
-        educationStartDate: "",
-        educationEndDate: "",
-        educationGpa: "",
-        educationSummary: ""
-      }],
-      skills: [{
-        skillsName: "",
-        skillsLevel: ""
-      }],
-      languages: [{
-        languageName: "",
-        languagesFluency: "",
-      }],
+      workCompany: "",
+      workPosition: "",
+      workWebsite: "",
+      workStartDate: "",
+      workEndDate: "",
+      workSummary: "",
+      volunteerOrganization: "",
+      volunteerPosition: "",
+      volunteerWebsite: "",
+      volunteerStartDate: "",
+      volunteerEndDate: "",
+      volunteerSummary: "",
+      educationInstitution: "",
+      educationMajor: "",
+      educationStudyType: "",
+      educationStartDate: "",
+      educationEndDate: "",
+      educationGpa: "",
+      educationSummary: "",
+      skillsName: "",
+      skillsLevel: "",
+      languageName: "",
+      languagesFluency: "",
     }
   }
 
   handleChange = event => this.setState({
     [event.target.name]: event.target.value
+
   })
 
   onCreateNewResume = event => {
@@ -55,51 +46,36 @@ class CreateNewResume extends Component {
     const { setResume } = this.props
     console.log(this.state);
 
-    addProfile(this.state)
-      // .then(() => signIn(this.state))
-
-      .then(res => {
-        setResume(res.data.resume)
-        console.log(res.data.resume);
-      })
+    addResumes(this.state)
+      .then(res => setResume(res.data))
       // .then(() => alert(messages.signUpSuccess, 'success'))
       // .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({
-          work: [{
-            workCompany: "",
-            workPosition: "",
-            workWebsite: "",
-            workStartDate: "",
-            workEndDate: "",
-            workSummary: ""
-          }],
-          volunteer: [{
-            volunteerOrganization: "",
-            volunteerPosition: "",
-            volunteerWebsite: "",
-            volunteerStartDate: "",
-            volunteerEndDate: "",
-            volunteerSummary: "",
-          }],
-          education: [{
-            educationInstitution: "",
-            educationMajor: "",
-            educationStudyType: "",
-            educationStartDate: "",
-            educationEndDate: "",
-            educationGpa: "",
-            educationSummary: ""
-          }],
-          skills: [{
-            skillsName: "",
-            skillsLevel: ""
-          }],
-          languages: [{
-            languageName: "",
-            languagesFluency: "",
-          }],
+          workCompany: "",
+          workPosition: "",
+          workWebsite: "",
+          workStartDate: "",
+          workEndDate: "",
+          workSummary: "",
+          volunteerOrganization: "",
+          volunteerPosition: "",
+          volunteerWebsite: "",
+          volunteerStartDate: "",
+          volunteerEndDate: "",
+          volunteerSummary: "",
+          educationInstitution: "",
+          educationMajor: "",
+          educationStudyType: "",
+          educationStartDate: "",
+          educationEndDate: "",
+          educationGpa: "",
+          educationSummary: "",
+          skillsName: "",
+          skillsLevel: "",
+          languageName: "",
+          languagesFluency: "",
         })
         // alert(messages.signUpFailure, 'danger')
       })
@@ -112,24 +88,24 @@ class CreateNewResume extends Component {
       workWebsite,
       workStartDate,
       workEndDate,
-      workSummary } = this.state.work
+      workSummary } = this.state
     const { volunteerOrganization,
       volunteerPosition,
       volunteerWebsite,
       volunteerStartDate,
       volunteerEndDate,
-      volunteerSummary } = this.state.volunteer
+      volunteerSummary } = this.state
     const { educationInstitution,
       educationMajor,
       educationStudyType,
       educationStartDate,
       educationEndDate,
       educationGpa,
-      educationSummary } = this.state.education
+      educationSummary } = this.state
     const { skillsName,
-      skillsLevel } = this.state.skills
+      skillsLevel } = this.state
     const { languageName,
-      languagesFluency } = this.state.languages
+      languagesFluency } = this.state
 
     return (
       <div>
@@ -295,7 +271,7 @@ class CreateNewResume extends Component {
           <label htmlFor="educationEndDate">gpa</label>
           <input
             type="text"
-            name="educationEndDate"
+            name="educationGpa"
             value={educationGpa}
             placeholder="educationEndDate"
             onChange={this.handleChange}

@@ -9,9 +9,9 @@ import SignIn from './auth/components/SignIn'
 import SignOut from './auth/components/SignOut'
 import UpdateUserInfo from './auth/components/UpdateUserInfo'
 import AlertDismissible from './auth/components/AlertDismissible'
-import Resume from './resume/components/resume'
 import ShowUserInfo from './auth/components/ShowUserInfo'
 import CreateNewResume from './resume/components/CreateNewResume'
+// import ShowAllResume from './resume/components/ShowAllResume'
 
 class App extends Component {
   constructor() {
@@ -27,12 +27,8 @@ class App extends Component {
 
   setUser = user => this.setState({ user })
 
-  // setResume = Resume => this.setState({ Resume })
-  setResume = resume => {
-    this.setState({
-      resume: [...this.state.resume, resume]
-    });
-  };
+  setResume = resume => this.setState({ resume })
+
   setProfile = profile => this.setState({ profile })
 
   clearUser = () => this.setState({ user: null })
@@ -63,15 +59,15 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/update-info' render={() => (
             <UpdateUserInfo alert={this.alert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/resumes' render={() => (
-            <Resume alert={this.alert} user={user} />
-          )} />
           <AuthenticatedRoute user={user} path='/add-resume' render={() => (
             <CreateNewResume alert={this.alert} user={user} setResume={setResume} />
           )} />
           <Route path='/profile/:username' render={() => (
             <ShowUserInfo profile={profile} setProfile={this.setProfile} />
           )} />
+          {/* <Route path='/profile/:username' render={() => (
+            <ShowAllResume resume={resume} setProfile={this.setProfile} />
+          )} /> */}
         </main>
       </React.Fragment>
     )
