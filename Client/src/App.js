@@ -53,9 +53,6 @@ class App extends Component {
           <Route path='/sign-in' render={() => (
             <SignIn alert={this.alert} setUser={this.setUser} />
           )} />
-          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
-            <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
-          )} />
           <AuthenticatedRoute user={user} path='/update-info' render={() => (
             <UpdateUserInfo alert={this.alert} user={user} />
           )} />
@@ -67,6 +64,9 @@ class App extends Component {
           )} />
           <Route path='/show-resumes' render={() => (
             <ShowAllResume resume={resume} setResume={this.setResume} />
+          )} />
+           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
+            <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
         </main>
       </React.Fragment>
