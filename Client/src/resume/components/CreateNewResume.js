@@ -7,106 +7,109 @@ import { addResumes } from '../apiResume'
 class CreateNewResume extends Component {
   constructor() {
     super()
-
     this.state = {
-      workCompany: "",
-      workPosition: "",
-      workWebsite: "",
-      workStartDate: "",
-      workEndDate: "",
-      workSummary: "",
-      volunteerOrganization: "",
-      volunteerPosition: "",
-      volunteerWebsite: "",
-      volunteerStartDate: "",
-      volunteerEndDate: "",
-      volunteerSummary: "",
-      educationInstitution: "",
-      educationMajor: "",
-      educationStudyType: "",
-      educationStartDate: "",
-      educationEndDate: "",
-      educationGpa: "",
-      educationSummary: "",
-      skillsName: "",
-      skillsLevel: "",
-      languageName: "",
-      languagesFluency: "",
+      work: {},
+      volunteer: {},
+      education: {},
+      skills: {},
+      language: {},
     }
   }
+  // nameWork: '2',
+  // typeWork: '2',
+  // nameEdu: '2',
+  // typeEdu: '2'
+  // {
+  // resume:{
+  // ...this.state.work,
+  //   // nameWork: '2',    typeWork: '2'
+  // ...this.state.edu
+  //   //nameEdu: '2',    typeEdu: '2'
+  // }
+  // }
+  //      test1,   work
+  //      test2,   edu
+  handleChange = (event, parentObj) => {
+    let newName = event.target.value
+    let changedKey = event.target.name
+    this.setState({
+      //      work :{name: '1',      type: '1'},   name: '2'
+      [parentObj]: { ...this.state[parentObj], [changedKey]: newName }
+    })
+  }
 
-  handleChange = event => this.setState({
-    [event.target.name]: event.target.value
-
-  })
+  // handleChange = event => this.setState({
+  //   [event.target.name]: event.target.value
+  // })
 
   onCreateNewResume = event => {
     event.preventDefault()
-    // alert,  history, 
-    const { setResume } = this.props
-    console.log(this.state);
+    this.setState({ work: {}, edu: {} })
+    // // alert,  history, 
+    // const { setResume } = this.props
+    // console.log(this.state);
+    // this.state.map
 
-    addResumes(this.state)
-      .then(res => setResume(res.data))
+    addResumes({
+      "resume": {
+        ...this.state.work,
+        ...this.state.volunteer,
+        ...this.state.education,
+        ...this.state.skills,
+        ...this.state.language,
+      }
+    })
+      //   resume:{
+      // ...this.state.work,
+      //   // nameWork: '2',    typeWork: '2'
+      // ...this.state.edu
+      //   //nameEdu: '2',    typeEdu: '2'
+      // }
+      .then(res => {
+        console.log('RES', res);
+        // setResume(res.data)
+      })
       // .then(() => alert(messages.signUpSuccess, 'success'))
       // .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({
-          workCompany: "",
-          workPosition: "",
-          workWebsite: "",
-          workStartDate: "",
-          workEndDate: "",
-          workSummary: "",
-          volunteerOrganization: "",
-          volunteerPosition: "",
-          volunteerWebsite: "",
-          volunteerStartDate: "",
-          volunteerEndDate: "",
-          volunteerSummary: "",
-          educationInstitution: "",
-          educationMajor: "",
-          educationStudyType: "",
-          educationStartDate: "",
-          educationEndDate: "",
-          educationGpa: "",
-          educationSummary: "",
-          skillsName: "",
-          skillsLevel: "",
-          languageName: "",
-          languagesFluency: "",
+          work: {},
+          volunteer: {},
+          education: {},
+          skills: {},
+          language: {},
         })
-        // alert(messages.signUpFailure, 'danger')
+        //     // alert(messages.signUpFailure, 'danger')
       })
   }
 
   render() {
-    const {
-      workCompany,
-      workPosition,
-      workWebsite,
-      workStartDate,
-      workEndDate,
-      workSummary } = this.state
-    const { volunteerOrganization,
-      volunteerPosition,
-      volunteerWebsite,
-      volunteerStartDate,
-      volunteerEndDate,
-      volunteerSummary } = this.state
-    const { educationInstitution,
-      educationMajor,
-      educationStudyType,
-      educationStartDate,
-      educationEndDate,
-      educationGpa,
-      educationSummary } = this.state
-    const { skillsName,
-      skillsLevel } = this.state
-    const { languageName,
-      languagesFluency } = this.state
-
+    // const {
+    //   workCompany,
+    //   workPosition,
+    //   workWebsite,
+    //   workStartDate,
+    //   workEndDate,
+    //   workSummary } = this.state
+    // const { volunteerOrganization,
+    //   volunteerPosition,
+    //   volunteerWebsite,
+    //   volunteerStartDate,
+    //   volunteerEndDate,
+    //   volunteerSummary } = this.state
+    // const { educationInstitution,
+    //   educationMajor,
+    //   educationStudyType,
+    //   educationStartDate,
+    //   educationEndDate,
+    //   educationGpa,
+    //   educationSummary } = this.state
+    // const { skillsName,
+    //   skillsLevel } = this.state
+    // const { languageName,
+    //   languagesFluency } = this.state
+    const { work, education, volunteer, skills, language } = this.state
     return (
       <div>
         <form className='auth-form' onSubmit={this.onCreateNewResume}>
@@ -115,54 +118,54 @@ class CreateNewResume extends Component {
           <input
             type="text"
             name="workCompany"
-            value={workCompany}
+            value={work.workCompany}
             placeholder="work Company"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
           <label htmlFor="workPosition">position Name</label>
           <input
             type="text"
             name="workPosition"
-            value={workPosition}
+            value={work.workPosition}
             placeholder="workPosition"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
           <label htmlFor="workWebsite">website Name</label>
           <input
             type="text"
             name="workWebsite"
-            value={workWebsite}
+            value={work.workWebsite}
             placeholder="workWebsite"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
           <label htmlFor="workStartDate">start Date</label>
           <input
             type="date"
             name="workStartDate"
-            value={workStartDate}
+            value={work.workStartDate}
             placeholder="workStartDate"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
           <label htmlFor="workEndDate">end Date</label>
           <input
             type="date"
             name="workEndDate"
-            value={workEndDate}
+            value={work.workEndDate}
             placeholder="workEndDate"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
           <label htmlFor="workSummary">summary</label>
           <input
             type="text"
             name="workSummary"
-            value={workSummary}
+            value={work.workSummary}
             placeholder="workSummary"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
           <hr />
@@ -171,54 +174,54 @@ class CreateNewResume extends Component {
           <input
             type="text"
             name="volunteerOrganization"
-            value={volunteerOrganization}
+            value={volunteer.volunteerOrganization}
             placeholder="volunteerOrganization"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
           <label htmlFor="volunteerPosition">position Name</label>
           <input
             type="text"
             name="volunteerPosition"
-            value={volunteerPosition}
+            value={volunteer.volunteerPosition}
             placeholder="volunteerPosition"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
           <label htmlFor="volunteerWebsite">website Name</label>
           <input
             type="text"
             name="volunteerWebsite"
-            value={volunteerWebsite}
+            value={volunteer.volunteerWebsite}
             placeholder="website"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
           <label htmlFor="volunteerStartDate">start Date</label>
           <input
             type="date"
             name="volunteerStartDate"
-            value={volunteerStartDate}
+            value={volunteer.volunteerStartDate}
             placeholder="startDate"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
           <label htmlFor="volunteerEndDate">end Date</label>
           <input
             type="date"
             name="volunteerEndDate"
-            value={volunteerEndDate}
+            value={volunteer.volunteerEndDate}
             placeholder="volunteerEndDate"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
           <label htmlFor="volunteerSummary">summary</label>
           <input
             type="text"
             name="volunteerSummary"
-            value={volunteerSummary}
+            value={volunteer.volunteerSummary}
             placeholder="volunteerSummary"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
           <hr />
@@ -227,63 +230,63 @@ class CreateNewResume extends Component {
           <input
             type="text"
             name="educationInstitution"
-            value={educationInstitution}
+            value={education.educationInstitution}
             placeholder="educationInstitution"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
           <label htmlFor="educationMajor">major</label>
           <input
             type="text"
             name="educationMajor"
-            value={educationMajor}
+            value={education.educationMajor}
             placeholder="educationMajor"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
           <label htmlFor="educationStudyType">study Type</label>
           <input
             type="text"
             name="educationStudyType"
-            value={educationStudyType}
+            value={education.educationStudyType}
             placeholder="educationStudyType"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
           <label htmlFor="educationStartDate">start Date</label>
           <input
             type="date"
             name="educationStartDate"
-            value={educationStartDate}
+            value={education.educationStartDate}
             placeholder="educationStartDate"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
           <label htmlFor="educationEndDate">end Date</label>
           <input
             type="date"
             name="educationEndDate"
-            value={educationEndDate}
+            value={education.educationEndDate}
             placeholder="educationEndDate"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
           <label htmlFor="educationEndDate">gpa</label>
           <input
             type="text"
             name="educationGpa"
-            value={educationGpa}
+            value={education.educationGpa}
             placeholder="educationEndDate"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
           <label htmlFor="educationSummary">summary</label>
           <input
             type="text"
             name="educationSummary"
-            value={educationSummary}
+            value={education.educationSummary}
             placeholder="educationSummary"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
           <label>Skills:</label>
@@ -291,18 +294,18 @@ class CreateNewResume extends Component {
           <input
             type="text"
             name="skillsName"
-            value={skillsName}
+            value={skills.skillsName}
             placeholder="skills Name"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'skills') }}
           />
           <br />
           <label htmlFor="skillsLevel">skills level</label>
           <input
             type="text"
             name="skillsLevel"
-            value={skillsLevel}
+            value={skills.skillsLevel}
             placeholder="skills skillsLevel"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'skills') }}
           />
           <br />
           <hr />
@@ -311,23 +314,63 @@ class CreateNewResume extends Component {
           <input
             type="text"
             name="languageName"
-            value={languageName}
+            value={language.languageName}
             placeholder="languageName"
-            onChange={this.handleChange}
+            onChange={(e) => { this.handleChange(e, 'language') }}
           />
           <br />
           <label htmlFor="languagesFluency">fluency</label>
           <input
             type="text"
             name="languagesFluency"
+            value={language.languagesFluency}
+            placeholder="languagesFluency"
+            onChange={(e) => { this.handleChange(e, 'language') }}
+          />
+
+
+          {/*  work , edu */}
+          {/* [{name: {placholed:'eduname',type:'text'},pass:{placholed:'pass',type:'pass',}
+{name: {placholed:'workname',type:'text'},pass:{placholed:'pass',type:'pass'}].map((oneGroup)=>{
+return  [ {placholed:'name',type:'text'},{placholed:'pass',type:'pass'}].map((oneInput)=>{
+            const {type, placholder}=oneInput
+
+return <input type={type}
+            placeholder={placholder} />
+          })
+}) */}
+
+
+          {/* <Edu edu={name: {placholed:'name',type:'text'},pass:{placholed:'pass',type:'pass'}}> */}
+          {/* what inside EDu Componen */}
+          {/* // for on obj */}
+          {/* [ {placholed:'name',type:'text'},{placholed:'pass',type:'pass'}].map((oneInput)=>{ */}
+          {/* const {type, placholder}=oneInput */}
+
+          {/* return <input type={type} */}
+          {/* placeholder={placholder} /> */}
+          {/* }) */}
+
+
+
+
+
+
+
+
+
+          {/* <input
+            type="text"
+            name={this.props.edu}
             value={languagesFluency}
             placeholder="languagesFluency"
-            onChange={this.handleChange}
-          />
+            onChange={(e) => { this.handleChange(e, 'work') }}
+          /> */}
+
           <br />
-          <button type="submit">Sign Up</button>
+          <button type="submit">Create</button>
         </form>
-      </div>
+      </div >
     )
   }
 }
