@@ -51,14 +51,19 @@ class CreateNewResume extends Component {
 
   onCreateNewResume = event => {
     event.preventDefault()
-    // alert
-    const { history, setResume } = this.props
+    // alert,  history, 
+    const { setResume } = this.props
+    console.log(this.state);
 
     addProfile(this.state)
       // .then(() => signIn(this.state))
-      .then(res => setResume(res.data.resume))
+
+      .then(res => {
+        setResume(res.data.resume)
+        console.log(res.data.resume);
+      })
       // .then(() => alert(messages.signUpSuccess, 'success'))
-      .then(() => history.push('/'))
+      // .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({
@@ -128,7 +133,7 @@ class CreateNewResume extends Component {
 
     return (
       <div>
-        <form>
+        <form className='auth-form' onSubmit={this.onCreateNewResume}>
           <h3>Work Expirance</h3>
           <label htmlFor="workCompany">Company Name</label>
           <input

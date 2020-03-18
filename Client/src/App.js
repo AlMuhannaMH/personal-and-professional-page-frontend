@@ -27,8 +27,12 @@ class App extends Component {
 
   setUser = user => this.setState({ user })
 
-  setResume = Resume => this.setState({ Resume })
-
+  // setResume = Resume => this.setState({ Resume })
+  setResume = resume => {
+    this.setState({
+      resume: [...this.state.resume, resume]
+    });
+  };
   setProfile = profile => this.setState({ profile })
 
   clearUser = () => this.setState({ user: null })
@@ -38,7 +42,7 @@ class App extends Component {
   }
 
   render() {
-    const { alerts, user, resume, profile } = this.state
+    const { alerts, user, setResume, profile } = this.state
 
     return (
       <React.Fragment>
@@ -63,7 +67,7 @@ class App extends Component {
             <Resume alert={this.alert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/add-resume' render={() => (
-            <CreateNewResume alert={this.alert} user={user} resume={resume} />
+            <CreateNewResume alert={this.alert} user={user} setResume={setResume} />
           )} />
           <Route path='/profile/:username' render={() => (
             <ShowUserInfo profile={profile} setProfile={this.setProfile} />
