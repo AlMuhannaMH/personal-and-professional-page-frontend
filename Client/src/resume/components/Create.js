@@ -1,10 +1,7 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import React from 'react';
+import { addResumes } from '../api';
 
-import { addResumes } from '../apiResume'
-// import messages from '../messages'
-
-class CreateNewResume extends Component {
+class Create extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -26,7 +23,6 @@ class CreateNewResume extends Component {
 
   onCreateNewResume = event => {
     event.preventDefault()
-    // // alert,  history, 
     const { setResumes, history } = this.props
 
     addResumes({
@@ -43,7 +39,7 @@ class CreateNewResume extends Component {
         setResumes(res.data.resume)
       })
       // .then(() => alert(messages.signUpSuccess, 'success'))
-      .then(() => history.push('/show-resumes'))
+      .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({
@@ -63,7 +59,6 @@ class CreateNewResume extends Component {
       <>
         <form className='auth-form' onSubmit={this.onCreateNewResume}>
           <h3>Work Expirance</h3>
-          <br />
           <label htmlFor="workCompany">Company Name</label>
           <input
             type="text"
@@ -73,7 +68,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
-          <label htmlFor="workPosition">Position Name</label>
+          <label htmlFor="workPosition">position Name</label>
           <input
             type="text"
             name="workPosition"
@@ -82,7 +77,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
-          <label htmlFor="workWebsite">Website Name</label>
+          <label htmlFor="workWebsite">website Name</label>
           <input
             type="text"
             name="workWebsite"
@@ -91,7 +86,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
-          <label htmlFor="workStartDate">Start Date</label>
+          <label htmlFor="workStartDate">start Date</label>
           <input
             type="date"
             name="workStartDate"
@@ -100,7 +95,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
-          <label htmlFor="workEndDate">End Date</label>
+          <label htmlFor="workEndDate">end Date</label>
           <input
             type="date"
             name="workEndDate"
@@ -109,7 +104,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'work') }}
           />
           <br />
-          <label htmlFor="workSummary">Summary</label>
+          <label htmlFor="workSummary">summary</label>
           <input
             type="text"
             name="workSummary"
@@ -119,8 +114,7 @@ class CreateNewResume extends Component {
           />
           <br />
           <hr />
-          <h3>Volunteer</h3>
-          <br />
+          <h3>Volunteer:</h3>
           <label htmlFor="volunteerOrganization">Company Name</label>
           <input
             type="text"
@@ -130,7 +124,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
-          <label htmlFor="volunteerPosition">Position Name</label>
+          <label htmlFor="volunteerPosition">position Name</label>
           <input
             type="text"
             name="volunteerPosition"
@@ -139,7 +133,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
-          <label htmlFor="volunteerWebsite">Website Name</label>
+          <label htmlFor="volunteerWebsite">website Name</label>
           <input
             type="text"
             name="volunteerWebsite"
@@ -148,7 +142,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
-          <label htmlFor="volunteerStartDate">Start Date</label>
+          <label htmlFor="volunteerStartDate">start Date</label>
           <input
             type="date"
             name="volunteerStartDate"
@@ -157,7 +151,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
-          <label htmlFor="volunteerEndDate">End Date</label>
+          <label htmlFor="volunteerEndDate">end Date</label>
           <input
             type="date"
             name="volunteerEndDate"
@@ -166,7 +160,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'volunteer') }}
           />
           <br />
-          <label htmlFor="volunteerSummary">Summary</label>
+          <label htmlFor="volunteerSummary">summary</label>
           <input
             type="text"
             name="volunteerSummary"
@@ -176,9 +170,8 @@ class CreateNewResume extends Component {
           />
           <br />
           <hr />
-          <h3>Education</h3>
-          <br />
-          <label htmlFor="educationInstitution">Institution</label>
+          <h3>Education:</h3>
+          <label htmlFor="educationInstitution">institution</label>
           <input
             type="text"
             name="educationInstitution"
@@ -187,7 +180,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
-          <label htmlFor="educationMajor">Major</label>
+          <label htmlFor="educationMajor">major</label>
           <input
             type="text"
             name="educationMajor"
@@ -196,7 +189,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
-          <label htmlFor="educationStudyType">Study Type</label>
+          <label htmlFor="educationStudyType">study Type</label>
           <input
             type="text"
             name="educationStudyType"
@@ -205,7 +198,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
-          <label htmlFor="educationStartDate">Start Date</label>
+          <label htmlFor="educationStartDate">start Date</label>
           <input
             type="date"
             name="educationStartDate"
@@ -214,7 +207,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
-          <label htmlFor="educationEndDate">End Date</label>
+          <label htmlFor="educationEndDate">end Date</label>
           <input
             type="date"
             name="educationEndDate"
@@ -223,7 +216,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
-          <label htmlFor="educationEndDate">Gpa</label>
+          <label htmlFor="educationEndDate">gpa</label>
           <input
             type="text"
             name="educationGpa"
@@ -232,7 +225,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
-          <label htmlFor="educationSummary">Summary</label>
+          <label htmlFor="educationSummary">summary</label>
           <input
             type="text"
             name="educationSummary"
@@ -241,9 +234,8 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'education') }}
           />
           <br />
-          <label>Skills</label>
-          <br />
-          <label htmlFor="skillsName">Skills Name</label>
+          <label>Skills:</label>
+          <label htmlFor="skillsName">skills Name</label>
           <input
             type="text"
             name="skillsName"
@@ -252,7 +244,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'skills') }}
           />
           <br />
-          <label htmlFor="skillsLevel">Skills Level</label>
+          <label htmlFor="skillsLevel">skills level</label>
           <input
             type="text"
             name="skillsLevel"
@@ -263,8 +255,7 @@ class CreateNewResume extends Component {
           <br />
           <hr />
           <h3>Languages</h3>
-          <br />
-          <label htmlFor="languageName">Languages</label>
+          <label htmlFor="languageName">languages</label>
           <input
             type="text"
             name="languageName"
@@ -273,7 +264,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'language') }}
           />
           <br />
-          <label htmlFor="languagesFluency">Fluency</label>
+          <label htmlFor="languagesFluency">fluency</label>
           <input
             type="text"
             name="languagesFluency"
@@ -282,11 +273,11 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'language') }}
           />
           <br />
-          <button class="btn btn-outline-secondary" type="submit">Create</button>
+          <button type="submit">Create</button>
         </form>
       </>
     )
   }
 }
 //17
-export default withRouter(CreateNewResume)
+export default Create

@@ -1,48 +1,64 @@
 import React from 'react';
-
 class Resume extends React.Component {
-        // deleteArticle = (event) => {
-        //     event.preventDefault();
-        //     this.props.deleteArticle(this.props.id);
-        // }
+        deleteResume = (event) => {
+                event.preventDefault();
+                this.props.deleteResume(this.props.id);
+        }
         render() {
                 return (
-                        <>
-                                <h3>Work Expirance:</h3>
-                                <label>Company Name: {this.props.workCompany} </label><br />
-                                {/* <label>Position: {this.props.workPosition} </label><br />
-                                <label>Website: {this.props.workWebsite} </label><br />
-                                <label>Start Date: {this.props.workStartDate} </label><br />
-                                <label>EndDate: {this.props.workEndDate} </label><br />
-                                <label>Summary: {this.props.workSummary} </label><br />
+                        <div className="resume">
+                                <div className="work">
+                                        <h1>work</h1>
+                                        <label>Company: {this.props.workCompany}</label>
+                                        <br /><label>Positio: {this.props.workPosition}</label>
+                                        <br /><label>Website: {this.props.workWebsite}</label>
+                                        <br /><label>StartDa: {this.props.workStartDate.slice(0, 10)}</label>
+                                        <br /><label>EndDate: {this.props.workEndDate.slice(0, 10)}</label>
+                                        <br /><label>Summary: {this.props.workSummary}</label>
+                                </div>
+
+                                <div className="volunteer">
+                                        <h1>Volunteer</h1>
+                                        <br /><label>Organization: {this.props.volunteerOrganization}</label>
+                                        <br /><label>Position: {this.props.volunteerPosition}</label>
+                                        <br /><label>Website: {this.props.volunteerWebsite}</label>
+                                        <br /><label>StartDate: {this.props.volunteerStartDate.slice(0, 10)}</label>
+                                        <br /><label>EndDate: {this.props.volunteerEndDate.slice(0, 10)}</label>
+                                        <br /><label>Summary: {this.props.volunteerSummary}</label>
+                                </div>
+
+                                <div className="education">
+                                        <h1>Education</h1>
+                                        <br /><label>Institution: {this.props.educationInstitution}</label>
+                                        <br /><label>Major: {this.props.educationMajor}</label>
+                                        <br /><label>StudyType: {this.props.educationStudyType}</label>
+                                        <br /><label>StartDate: {this.props.educationStartDate.slice(0, 10)}</label>
+                                        <br /><label>EndDate: {this.props.educationEndDate.slice(0, 10)}</label>
+                                        <br /><label>Gpa: {this.props.educationGpa}</label>
+                                        <br /><label>Summary: {this.props.educationSummary}</label>
+                                </div>
+
+                                <div className="skills">
+                                        <h1>Skills</h1>
+                                        <br /><label>Name: {this.props.skillsName}</label>
+                                        <br /><label>Level: {this.props.skillsLevel}</label>
+                                </div>
+
+                                <div className="language">
+                                        <h1>Language</h1>
+                                        <br /><label>Name: {this.props.languageName}</label>
+                                        <br /><label>Fluency: {this.props.languageFluency}</label>
+                                </div>
                                 <hr />
-                                <h3>Volunteer:</h3>
-                                <label>Organization: {this.props.volunteerOrganization} </label><br />
-                                <label>Position: {this.props.volunteerPosition} </label><br />
-                                <label>Website: {this.props.volunteerWebsite} </label><br />
-                                <label>Start Date: {this.props.volunteerStartDate} </label><br />
-                                <label>EndDate: {this.props.volunteerEndDate} </label><br />
-                                <label>Summary: {this.props.volunteerSummary} </label><br />
+
+                                <br />
+                                <a href="/#" onClick={this.deleteResume}>Delete</a>
+
                                 <hr />
-                                <h3>Education:</h3>
-                                <label>Institution: {this.props.educationInstitution} </label><br />
-                                <label>Major: {this.props.educationMajor} </label><br />
-                                <label>Study Type: {this.props.educationStudyType} </label><br />
-                                <label>Start Date: {this.props.educationStartDate} </label><br />
-                                <label>EndDate: {this.props.educationEndDate} </label ><br />
-                                <label>GPA: {this.props.content.educationGpa} </label><br />
-                                <label>Summary: {this.props.educationSummary} </label><br />
                                 <hr />
-                                <label>Skills:</label>
-                                <label>Name: {this.props.skillsName} </label><br />
-                                <label>Level: {this.props.skillsLevel} </label><br />
-                                <hr />
-                                <h3>Languages:</h3>
-                                <label>Language: {this.props.languageName} </label><br /> */}
-                                <hr />
-                        </>
-                )
+                        </div>
+                );
         }
 }
 
-export default Resume
+export default Resume;

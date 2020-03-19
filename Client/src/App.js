@@ -13,6 +13,7 @@ import CreateNewResume from './resume/components/CreateNewResume'
 import ShowAllResume from './resume/components/ShowAllResume'
 import   './App.css';
 import Home from './home/Home'
+import Index from './resume/index'
 
 
 class App extends Component {
@@ -22,17 +23,16 @@ class App extends Component {
     this.state = {
       user: null,
       alerts: [],
-      resume: [],
       profile: [],
+      resumes: [],
     }
   }
 
   setUser = user => this.setState({ user })
-
-  setResume = resume => this.setState({ resume })
-
+  setResumes = (resumes) => {
+    this.setState({ resumes: resumes });
+  }
   setProfile = profile => this.setState({ profile })
-
   clearUser = () => this.setState({ user: null })
 
   alert = (message, type) => {
@@ -40,8 +40,7 @@ class App extends Component {
   }
 
   render() {
-    const { alerts, user, setResume, profile, resume } = this.state
-
+    const { alerts, user, profile, resumes } = this.state
     return (
       <>
         <Header user={user} profile={profile} />
@@ -62,13 +61,13 @@ class App extends Component {
             <UpdateUserInfo alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/add-resume' render={() => (
-            <CreateNewResume alert={this.alert} user={user} setResume={setResume} />
+            <CreateNewResume alert={this.alert} user={user} setResumes={this.setResumes} />
           )} />
           <Route path='/profile/:username' render={() => (
             <ShowUserInfo profile={profile} setProfile={this.setProfile} />
           )} />
           <Route path='/show-resumes' render={() => (
-            <ShowAllResume resume={resume} setResume={this.setResume} />
+            <Index resumes={resumes} setResumes={this.setResumes} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
