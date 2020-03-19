@@ -28,8 +28,8 @@ class UpdateUserInfo extends Component {
     const { alert, history, user } = this.props;
 
     updateUserInfo(this.state, user)
-      .then(() => alert(messages.changeupdateInfoSuccess, "success"))
-      .then(() => history.push("/"))
+      .then(() => alert(messages.updateInfoSuccess, "success"))
+      .then(() => history.push(`/profile/${user.username}`))
       .catch(error => {
         console.error(error);
         this.setState({ firstName: "", lastName: "", label: "", phone: "", oldPassword: "", newPassword: "" });
