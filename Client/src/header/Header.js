@@ -5,7 +5,7 @@ import './Header.scss'
 
 const authenticatedOptions = (
   <React.Fragment>
-    <Link to="/profile/:username" className="badge badge-light">  Profile  </Link>
+    <Link to="/profile/" className="badge badge-light">  Profile  </Link>
     <Link to="/update-info" className="badge badge-light">  Update my Info  </Link>
     <Link to="/add-resume" className="badge badge-light">  Add New resume  </Link>
     <Link to="/show-resumes" className="badge badge-light">  Show My Resumes  </Link>
@@ -28,13 +28,12 @@ const alwaysOptions = (
 
 const Header = ({ user, profile }) => (
   <header className="main-header">
-    <h1>Personal and Professional Page</h1>
+    <h2>{user && <span>{`Welcome, ${user.firstName} ${user.lastName}`}</span>}</h2>
     <nav>
-      {user && <span>{`Welcome, ${user.firstName} ${user.lastName}`}</span>}
       {user ? authenticatedOptions : unauthenticatedOptions}
       {alwaysOptions}
     </nav>
-  </header>
+  </header >
 )
 
 export default Header
