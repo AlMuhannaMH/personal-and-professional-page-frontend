@@ -71,11 +71,10 @@ class Resumes extends React.Component {
 
         return (
             <>
-                {/* <h4><Link to="/create"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Resume</Link></h4> */}
-                <hr />
-                <hr />
-                <h3>All Resumes</h3>
-                {allResumes}
+                <div className="all-resumes">
+                    <h3 className="badge badge-light">All Resumes</h3>
+                    {allResumes}
+                </div>
             </>
         );
     }
