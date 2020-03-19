@@ -118,7 +118,7 @@ class SignUp extends Component {
             placeholder="Confirm Password"
             onChange={this.handleChange}
           />
-          <button type="button" className="btn btn-outline-secondary">Sign Up</button>
+          <button type="submit" className="btn btn-outline-secondary">Sign Up</button>
         </form>
       </div>
     )
