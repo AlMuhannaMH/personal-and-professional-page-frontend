@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
-
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
@@ -12,6 +11,9 @@ import AlertDismissible from './auth/components/AlertDismissible'
 import ShowUserInfo from './auth/components/ShowUserInfo'
 import CreateNewResume from './resume/components/CreateNewResume'
 import ShowAllResume from './resume/components/ShowAllResume'
+import   './App.css';
+import Home from './home/Home'
+
 
 class App extends Component {
   constructor() {
@@ -47,6 +49,9 @@ class App extends Component {
           <AlertDismissible key={index} variant={alert.type} message={alert.message} />
         ))}
         <main className="container">
+        <Route path='/' render={() => (
+            <Home alert={this.alert} setUser={this.setUser} />
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />

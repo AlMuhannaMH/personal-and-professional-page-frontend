@@ -45,6 +45,7 @@ class SignUp extends Component {
     const { firstName, lastName, username, label, phone, email, password, passwordConfirmation } = this.state
 
     return (
+      <div class="display-5">
       <form className='auth-form' onSubmit={this.onSignUp}>
         <h3>Sign Up</h3>
 
@@ -118,8 +119,9 @@ class SignUp extends Component {
           placeholder="Confirm Password"
           onChange={this.handleChange}
         />
-        <button type="submit">Sign Up</button>
+        <button type="button"  class="btn btn-outline-secondary">Sign Up</button>
       </form>
+      </div>
     )
   }
 }

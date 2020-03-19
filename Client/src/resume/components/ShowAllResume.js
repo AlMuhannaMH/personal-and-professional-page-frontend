@@ -3,7 +3,7 @@ import React from 'react';
 import { getResumes } from '../apiResume';
 import { withRouter } from "react-router-dom";
 
-import Resume from './Resume'
+import Resume from './resume'
 
 // // import messages from '../messages'
 
@@ -47,8 +47,14 @@ class ShowAllResume extends React.Component {
 
         return (
             <>
-                <h3>All Articles</h3>
-                {allResumes}
+            <main className="mainIfo" >
+                    <div className="inner">
+                        <h3>All Resumes</h3>
+                        <ul class="list-group">
+                        <li class="list-group-item" > {allResumes}</li>
+                        </ul>
+                    </div>
+                </main>
             </>
         );
     }

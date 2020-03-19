@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
 import { updateUserInfo } from '../apiAuth'
 import messages from '../messages'
 
@@ -110,6 +111,7 @@ class UpdateUserInfo extends Component {
           onChange={this.handleChange}
         />
         <button type="submit">Update Your Info</button>
+       <button type="button" class="btn btn-danger" onClick={}>renadvvvvvvv</button>
       </form>
     );
   }
