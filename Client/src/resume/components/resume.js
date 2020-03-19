@@ -1,4 +1,5 @@
 import React from 'react';
+
 class Resume extends React.Component {
         deleteResume = (event) => {
                 event.preventDefault();

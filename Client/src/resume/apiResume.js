@@ -3,7 +3,7 @@ import axios from "axios";
 
 //Get Resumes
 export const getResumes = () => {
-  return axios.get(`${apiUrl}/api/resume`);
+  return axios.get(`${apiUrl}/resumes`);
 };
 
 //Add Resumes to the User

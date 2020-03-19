@@ -43,10 +43,10 @@ class SignIn extends Component {
         <label htmlFor="username">Username</label>
         <input
           required
-          type="username"
+          type="text"
           name="username"
           value={username}
-          placeholder="Username or Email"
+          placeholder="Username"
           onChange={this.handleChange}
         />
         <label htmlFor="password">Password</label>
@@ -58,7 +58,7 @@ class SignIn extends Component {
           placeholder="Password"
           onChange={this.handleChange}
         />
-        <button type="submit" class="btn btn-outline-secondary"> Sign In </button>
+        <button type="submit" className="btn btn-outline-secondary"> Sign In </button>
       </form>
     )
   }

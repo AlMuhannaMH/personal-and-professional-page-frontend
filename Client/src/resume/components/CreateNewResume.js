@@ -282,7 +282,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'language') }}
           />
           <br />
-          <button class="btn btn-outline-secondary" type="submit">Create</button>
+          <button className="btn btn-outline-secondary" type="submit">Create</button>
         </form>
       </>
     )

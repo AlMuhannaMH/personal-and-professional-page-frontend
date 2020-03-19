@@ -44,82 +44,82 @@ class SignUp extends Component {
     const { firstName, lastName, username, label, phone, email, password, passwordConfirmation } = this.state
 
     return (
-      <div class="display-5">
-      <form className='auth-form' onSubmit={this.onSignUp}>
-        <h3>Sign Up</h3>
+      <div className="display-5">
+        <form className='auth-form' onSubmit={this.onSignUp}>
+          <h3>Sign Up</h3>
 
-        <label htmlFor="firstName">First Name</label>
-        <input
-          required
-          name="firstName"
-          value={firstName}
-          type="text"
-          placeholder="First Name"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="lastName">Last Name</label>
-        <input
-          required
-          name="lastName"
-          value={lastName}
-          type="text"
-          placeholder="Last Name"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="username">Username</label>
-        <input
-          required
-          name="username"
-          value={username}
-          type="text"
-          placeholder="username"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="label">Label</label>
-        <input
-          name="label"
-          value={label}
-          type="text"
-          placeholder="label"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="phone">Phone</label>
-        <input
-          name="phone"
-          value={phone}
-          type="text"
-          placeholder="phone"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="email">Email</label>
-        <input
-          required
-          name="email"
-          value={email}
-          type="email"
-          placeholder="Email"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          required
-          name="password"
-          value={password}
-          type="password"
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
-        <label htmlFor="passwordConfirmation">Confirm Password</label>
-        <input
-          required
-          name="passwordConfirmation"
-          value={passwordConfirmation}
-          type="password"
-          placeholder="Confirm Password"
-          onChange={this.handleChange}
-        />
-        <button type="button"  class="btn btn-outline-secondary">Sign Up</button>
-      </form>
+          <label htmlFor="firstName">First Name</label>
+          <input
+            required
+            name="firstName"
+            value={firstName}
+            type="text"
+            placeholder="First Name"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="lastName">Last Name</label>
+          <input
+            required
+            name="lastName"
+            value={lastName}
+            type="text"
+            placeholder="Last Name"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="username">Username</label>
+          <input
+            required
+            name="username"
+            value={username}
+            type="text"
+            placeholder="username"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="label">Label</label>
+          <input
+            name="label"
+            value={label}
+            type="text"
+            placeholder="label"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="phone">Phone</label>
+          <input
+            name="phone"
+            value={phone}
+            type="text"
+            placeholder="phone"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="email">Email</label>
+          <input
+            required
+            name="email"
+            value={email}
+            type="email"
+            placeholder="Email"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            required
+            name="password"
+            value={password}
+            type="password"
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+          <label htmlFor="passwordConfirmation">Confirm Password</label>
+          <input
+            required
+            name="passwordConfirmation"
+            value={passwordConfirmation}
+            type="password"
+            placeholder="Confirm Password"
+            onChange={this.handleChange}
+          />
+          <button type="button" className="btn btn-outline-secondary">Sign Up</button>
+        </form>
       </div>
     )
   }

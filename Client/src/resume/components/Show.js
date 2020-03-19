@@ -29,15 +29,15 @@ class Show extends Component {
 
   render() {
     return (
-      <div class="container">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">
+      <div className="container">
+        <div className="panel panel-default">
+          <div className="panel-heading">
+            <h3 className="panel-title">
               {this.state.resume.title}
             </h3>
           </div>
-          <div class="panel-body">
-            <h4><Link to="/"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Book List</Link></h4>
+          <div className="panel-body">
+            <h4><Link to="/"><span className="glyphicon glyphicon-th-list" aria-hidden="true"></span>Book List</Link></h4>
             <dl>
               <dt>ISBN:</dt>
               <dd>{this.state.resume.isbn}</dd>
@@ -50,8 +50,8 @@ class Show extends Component {
               <dt>Publisher:</dt>
               <dd>{this.state.resume.publisher}</dd>
             </dl>
-            <Link to={`/edit/${this.state.resume._id}`} class="btn btn-success">Edit</Link>&nbsp;
-            <button onClick={this.delete.bind(this, this.state.resume._id)} class="btn btn-danger">Delete</button>
+            <Link to={`/edit/${this.state.resume._id}`} className="btn btn-success">Edit</Link>&nbsp;
+            <button onClick={this.delete.bind(this, this.state.resume._id)} className="btn btn-danger">Delete</button>
           </div>
         </div>
       </div>

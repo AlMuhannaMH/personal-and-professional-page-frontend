@@ -55,7 +55,7 @@ class UpdateUserInfo extends Component {
     const { firstName, lastName, label, phone, oldPassword, newPassword } = this.state
 
     return (
-      <div class="display-5">
+      <div className="display-5">
         <form className="auth-form" onSubmit={this.onUpdateUserInfo}>
           <h3>Update User Info</h3>
 
@@ -114,17 +114,17 @@ class UpdateUserInfo extends Component {
             placeholder="New Password"
             onChange={this.handleChange}
           />
-          <button type="submit" class="btn btn-outline-secondary">Update My Info</button>
+          <button type="submit" className="btn btn-outline-secondary">Update My Info</button>
         </form>
-        <hr/>
+        <hr />
         <hr />
         <br />
         <br />
         <br />
         <br />
         <label htmlFor="deleteAcount">Please Delete My Acount  </label>
-        <br/>
-        <button type="submit" class="btn btn-outline-danger"  onClick={this.deleteUserAcount}>Delete</button>
+        <br />
+        <button type="submit" className="btn btn-outline-danger" onClick={this.deleteUserAcount}>Delete</button>
       </div>
     );
   }

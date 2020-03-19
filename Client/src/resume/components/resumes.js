@@ -1,12 +1,14 @@
 import React from 'react';
 import Resume from './resume';
 import { getResumes, deleteResumes } from '../apiResume';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class Resumes extends React.Component {
     componentDidMount() {
         getResumes()
             .then((response) => {
+                console.log(response.data.resumes);
+
                 this.props.setResumes(response.data.resumes);
             })
             .catch((error) => {
@@ -69,7 +71,7 @@ class Resumes extends React.Component {
 
         return (
             <>
-                <h4><Link to="/create"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Resume</Link></h4>
+                {/* <h4><Link to="/create"><span className="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Add Resume</Link></h4> */}
                 <hr />
                 <hr />
                 <h3>All Resumes</h3>
