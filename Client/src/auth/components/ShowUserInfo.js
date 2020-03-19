@@ -10,6 +10,8 @@ class ShowUserInfo extends Component {
         // console.log(this.props.match.params);
         showUserInfo(this.props.match.params.username)
             .then((response) => {
+                console.log(response);
+
                 this.props.setProfile(response.data.profile);
             })
             .catch((error) => {

@@ -27,7 +27,7 @@ class CreateNewResume extends Component {
   onCreateNewResume = event => {
     event.preventDefault()
     // // alert,  history, 
-    const { setResume, history } = this.props
+    const { setResumes, history } = this.props
 
     addResumes({
       "resume": {
@@ -40,7 +40,7 @@ class CreateNewResume extends Component {
     })
       .then(res => {
         console.log('RES', res);
-        setResume(res.data.resume)
+        setResumes(res.data.resume)
       })
       // .then(() => alert(messages.signUpSuccess, 'success'))
       .then(() => history.push('/show-resumes'))

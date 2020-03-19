@@ -9,8 +9,8 @@ class SignIn extends Component {
     super()
 
     this.state = {
-      username: 'mhm',
-      password: '1234'
+      username: '',
+      password: ''
     }
   }
 

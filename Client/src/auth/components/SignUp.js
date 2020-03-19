@@ -7,7 +7,6 @@ import messages from '../messages'
 class SignUp extends Component {
   constructor() {
     super()
-
     this.state = {
       firstName: '',
       lastName: '',

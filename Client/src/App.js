@@ -10,7 +10,6 @@ import UpdateUserInfo from './auth/components/UpdateUserInfo'
 import AlertDismissible from './auth/components/AlertDismissible'
 import ShowUserInfo from './auth/components/ShowUserInfo'
 import CreateNewResume from './resume/components/CreateNewResume'
-import ShowAllResume from './resume/components/ShowAllResume'
 import Index from './resume/index'
 
 class App extends Component {
@@ -26,7 +25,9 @@ class App extends Component {
   }
 
   setUser = user => this.setState({ user })
-  setResume = resume => this.setState({ resume })
+  setResumes = (resumes) => {
+    this.setState({ resumes: resumes });
+  }
   setProfile = profile => this.setState({ profile })
   clearUser = () => this.setState({ user: null })
 
@@ -35,7 +36,7 @@ class App extends Component {
   }
 
   render() {
-    const { alerts, user, setResume, profile, resume } = this.state
+    const { alerts, user, profile, resumes } = this.state
     return (
       <>
         <Header user={user} profile={profile} />
@@ -53,26 +54,18 @@ class App extends Component {
             <UpdateUserInfo alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/add-resume' render={() => (
-            <CreateNewResume alert={this.alert} user={user} setResume={setResume} />
+            <CreateNewResume alert={this.alert} user={user} setResumes={this.setResumes} />
           )} />
           <Route path='/profile/:username' render={() => (
             <ShowUserInfo profile={profile} setProfile={this.setProfile} />
           )} />
           <Route path='/show-resumes' render={() => (
-            <ShowAllResume resume={resume} setResume={this.setResume} />
+            <Index resumes={resumes} setResumes={this.setResumes} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
-          <AuthenticatedRoute path='/' render={() => (
-            <Index resumes={this.state.resumes}
-              setResumes={this.setResumes} />
-          )} />
         </main>
-        {/* update the resume crud */}
-        <Route path='/resumes' render={() => (
-          <Index />
-        )} />
       </>
     )
   }

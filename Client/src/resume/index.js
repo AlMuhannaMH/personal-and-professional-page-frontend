@@ -1,5 +1,6 @@
 import React from 'react';
 import Resumes from './components/resumes.js';
+import { withRouter } from 'react-router-dom'
 
 class Index extends React.Component {
     render() {
@@ -10,11 +11,10 @@ class Index extends React.Component {
                         Welcome to PPP!
           </p>
                 </header>
-                <Resumes resumes={this.state.resumes}
-                    setResumes={this.setResumes} />
+                <Resumes resumes={this.props.resumes} setResumes={this.props.setResumes} />
             </div>
         );
     }
 }
 
-export default Index;
+export default withRouter(Index);

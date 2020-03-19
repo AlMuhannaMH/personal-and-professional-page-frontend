@@ -5,7 +5,7 @@ import './Header.scss'
 
 const authenticatedOptions = (
   <React.Fragment>
-    <Link to="/profile/:username">Profile</Link>
+    {/* <Link to="/profile">Profile</Link> */}
     <Link to="/update-info">Update my Info</Link>
     <Link to="/add-resume">Add New resume</Link>
     <Link to="/show-resumes">Show My Resumes</Link>
