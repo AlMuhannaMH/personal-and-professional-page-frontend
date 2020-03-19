@@ -1,10 +1,7 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import React from 'react';
+import { addResumes } from '../api';
 
-import { updateResumes } from '../apiResume'
-// import messages from '../messages'
-
-class CreateNewResume extends Component {
+class Create extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -26,10 +23,9 @@ class CreateNewResume extends Component {
 
   onCreateNewResume = event => {
     event.preventDefault()
-    // // alert,  history, 
-    const { setResume, history } = this.props
+    const { setResumes, history } = this.props
 
-    updateResumes(resume, {
+    addResumes({
       "resume": {
         ...this.state.work,
         ...this.state.volunteer,
@@ -40,10 +36,10 @@ class CreateNewResume extends Component {
     })
       .then(res => {
         console.log('RES', res);
-        setResume(res.data.resume)
+        setResumes(res.data.resume)
       })
       // .then(() => alert(messages.signUpSuccess, 'success'))
-      .then(() => history.push('/show-resumes'))
+      .then(() => history.push('/'))
       .catch(error => {
         console.error(error)
         this.setState({
@@ -284,4 +280,4 @@ class CreateNewResume extends Component {
   }
 }
 //17
-export default withRouter(CreateNewResume)
+export default Create

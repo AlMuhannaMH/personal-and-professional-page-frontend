@@ -276,46 +276,6 @@ class CreateNewResume extends Component {
             placeholder="languagesFluency"
             onChange={(e) => { this.handleChange(e, 'language') }}
           />
-
-
-          {/*  work , edu */}
-          {/* [{name: {placholed:'eduname',type:'text'},pass:{placholed:'pass',type:'pass',}
-{name: {placholed:'workname',type:'text'},pass:{placholed:'pass',type:'pass'}].map((oneGroup)=>{
-return  [ {placholed:'name',type:'text'},{placholed:'pass',type:'pass'}].map((oneInput)=>{
-            const {type, placholder}=oneInput
-
-return <input type={type}
-            placeholder={placholder} />
-          })
-}) */}
-
-
-          {/* <Edu edu={name: {placholed:'name',type:'text'},pass:{placholed:'pass',type:'pass'}}> */}
-          {/* what inside EDu Componen */}
-          {/* // for on obj */}
-          {/* [ {placholed:'name',type:'text'},{placholed:'pass',type:'pass'}].map((oneInput)=>{ */}
-          {/* const {type, placholder}=oneInput */}
-
-          {/* return <input type={type} */}
-          {/* placeholder={placholder} /> */}
-          {/* }) */}
-
-
-
-
-
-
-
-
-
-          {/* <input
-            type="text"
-            name={this.props.edu}
-            value={languagesFluency}
-            placeholder="languagesFluency"
-            onChange={(e) => { this.handleChange(e, 'work') }}
-          /> */}
-
           <br />
           <button type="submit">Create</button>
         </form>
@@ -323,5 +283,5 @@ return <input type={type}
     )
   }
 }
-
+//17
 export default withRouter(CreateNewResume)

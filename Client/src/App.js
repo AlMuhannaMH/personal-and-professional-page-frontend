@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './App.scss'
 import { Route } from 'react-router-dom'
-
 import AuthenticatedRoute from './auth/components/AuthenticatedRoute'
 import Header from './header/Header'
 import SignUp from './auth/components/SignUp'
@@ -12,6 +11,7 @@ import AlertDismissible from './auth/components/AlertDismissible'
 import ShowUserInfo from './auth/components/ShowUserInfo'
 import CreateNewResume from './resume/components/CreateNewResume'
 import ShowAllResume from './resume/components/ShowAllResume'
+import Index from './resume/index'
 
 class App extends Component {
   constructor() {
@@ -20,17 +20,14 @@ class App extends Component {
     this.state = {
       user: null,
       alerts: [],
-      resume: [],
       profile: [],
+      resumes: [],
     }
   }
 
   setUser = user => this.setState({ user })
-
   setResume = resume => this.setState({ resume })
-
   setProfile = profile => this.setState({ profile })
-
   clearUser = () => this.setState({ user: null })
 
   alert = (message, type) => {
@@ -39,7 +36,6 @@ class App extends Component {
 
   render() {
     const { alerts, user, setResume, profile, resume } = this.state
-
     return (
       <>
         <Header user={user} profile={profile} />
@@ -68,7 +64,15 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut alert={this.alert} clearUser={this.clearUser} user={user} />
           )} />
+          <AuthenticatedRoute path='/' render={() => (
+            <Index resumes={this.state.resumes}
+              setResumes={this.setResumes} />
+          )} />
         </main>
+        {/* update the resume crud */}
+        <Route path='/resumes' render={() => (
+          <Index />
+        )} />
       </>
     )
   }
