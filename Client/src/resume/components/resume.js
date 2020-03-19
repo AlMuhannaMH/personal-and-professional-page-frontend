@@ -1,10 +1,12 @@
 import React from 'react';
 
 class Resume extends React.Component {
+
         deleteResume = (event) => {
                 event.preventDefault();
                 this.props.deleteResume(this.props.id);
         }
+
         render() {
                 return (
                         <div className="resume">
@@ -13,8 +15,8 @@ class Resume extends React.Component {
                                         <label>Company: {this.props.workCompany}</label>
                                         <br /><label>Positio: {this.props.workPosition}</label>
                                         <br /><label>Website: {this.props.workWebsite}</label>
-                                        <br /><label>StartDa: {this.props.workStartDate.slice(0, 10)}</label>
-                                        <br /><label>EndDate: {this.props.workEndDate.slice(0, 10)}</label>
+                                        {/* <br /><label>StartDa: {this.props.workStartDate.slice(0, 10)}</label> */}
+                                        {/* <br /><label>EndDate: {this.props.workEndDate.slice(0, 10)}</label> */}
                                         <br /><label>Summary: {this.props.workSummary}</label>
                                 </div>
 
@@ -23,8 +25,8 @@ class Resume extends React.Component {
                                         <br /><label>Organization: {this.props.volunteerOrganization}</label>
                                         <br /><label>Position: {this.props.volunteerPosition}</label>
                                         <br /><label>Website: {this.props.volunteerWebsite}</label>
-                                        <br /><label>StartDate: {this.props.volunteerStartDate.slice(0, 10)}</label>
-                                        <br /><label>EndDate: {this.props.volunteerEndDate.slice(0, 10)}</label>
+                                        {/* <br /><label>StartDate: {this.props.volunteerStartDate.slice(0, 10)}</label> */}
+                                        {/* <br /><label>EndDate: {this.props.volunteerEndDate.slice(0, 10)}</label> */}
                                         <br /><label>Summary: {this.props.volunteerSummary}</label>
                                 </div>
 
@@ -33,8 +35,8 @@ class Resume extends React.Component {
                                         <br /><label>Institution: {this.props.educationInstitution}</label>
                                         <br /><label>Major: {this.props.educationMajor}</label>
                                         <br /><label>StudyType: {this.props.educationStudyType}</label>
-                                        <br /><label>StartDate: {this.props.educationStartDate.slice(0, 10)}</label>
-                                        <br /><label>EndDate: {this.props.educationEndDate.slice(0, 10)}</label>
+                                        {/* <br /><label>StartDate: {this.props.educationStartDate.slice(0, 10)}</label> */}
+                                        {/* <br /><label>EndDate: {this.props.educationEndDate.slice(0, 10)}</label> */}
                                         <br /><label>Gpa: {this.props.educationGpa}</label>
                                         <br /><label>Summary: {this.props.educationSummary}</label>
                                 </div>
@@ -54,7 +56,6 @@ class Resume extends React.Component {
 
                                 <br />
                                 <a href="/#" onClick={this.deleteResume}>Delete</a>
-
                                 <hr />
                                 <hr />
                         </div>
