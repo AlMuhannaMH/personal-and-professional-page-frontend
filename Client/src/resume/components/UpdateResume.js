@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
-
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.js";
 import { updateResumes } from '../apiResume'
-// import messages from '../messages'
+import messages from '../messages'
 
 class CreateNewResume extends Component {
   constructor() {
@@ -277,7 +278,7 @@ class CreateNewResume extends Component {
             onChange={(e) => { this.handleChange(e, 'language') }}
           />
           <br />
-          <button type="submit">Create</button>
+          <button type="submit" class="btn btn-danger">Create</button>
         </form>
       </>
     )

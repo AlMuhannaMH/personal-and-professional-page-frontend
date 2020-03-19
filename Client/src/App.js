@@ -10,7 +10,11 @@ import UpdateUserInfo from './auth/components/UpdateUserInfo'
 import AlertDismissible from './auth/components/AlertDismissible'
 import ShowUserInfo from './auth/components/ShowUserInfo'
 import CreateNewResume from './resume/components/CreateNewResume'
+import ShowAllResume from './resume/components/ShowAllResume'
+import   './App.css';
+import Home from './home/Home'
 import Index from './resume/index'
+
 
 class App extends Component {
   constructor() {
@@ -44,6 +48,9 @@ class App extends Component {
           <AlertDismissible key={index} variant={alert.type} message={alert.message} />
         ))}
         <main className="container">
+        <Route path='/' render={() => (
+            <Home alert={this.alert} setUser={this.setUser} />
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp alert={this.alert} setUser={this.setUser} />
           )} />

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-
 import { updateUserInfo, deleteUserAcountFromTheDB } from '../apiAuth'
 import messages from '../messages'
 
@@ -56,7 +55,7 @@ class UpdateUserInfo extends Component {
     const { firstName, lastName, label, phone, oldPassword, newPassword } = this.state
 
     return (
-      <>
+      <div class="display-5">
         <form className="auth-form" onSubmit={this.onUpdateUserInfo}>
           <h3>Update User Info</h3>
 
@@ -115,16 +114,18 @@ class UpdateUserInfo extends Component {
             placeholder="New Password"
             onChange={this.handleChange}
           />
-          <button type="submit">Update Your Info</button>
+          <button type="submit" class="btn btn-outline-secondary">Update My Info</button>
         </form>
+        <hr/>
         <hr />
         <br />
         <br />
         <br />
         <br />
-        <label htmlFor="deleteAcount">Please delete my acount:  </label>
-        <button type="submit" onClick={this.deleteUserAcount}>Delete</button>
-      </>
+        <label htmlFor="deleteAcount">Please Delete My Acount  </label>
+        <br/>
+        <button type="submit" class="btn btn-outline-danger"  onClick={this.deleteUserAcount}>Delete</button>
+      </div>
     );
   }
 }
