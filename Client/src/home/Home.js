@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 class Home extends Component {
-    render(){
-        return(
-            <h2 className="welcome">WELCOME</h2>
+    render() {
+        return (
+            <>
+                <hr />
+                <h1 className="welcome">Personal and Professional Page</h1>
+                <hr />
+
+            </>
         );
     }
 }
