@@ -53,9 +53,9 @@ class Resume extends React.Component {
                                         <br /><label>Fluency: {this.props.languageFluency}</label>
                                 </div>
                                 <hr />
-
                                 <br />
-                                <a href="/#" onClick={this.deleteResume}>Delete</a>
+                                <h6><a href="/#" onClick={this.deleteResume}>Delete</a> |||| <a href="/#" onClick={this.deleteResume}>Edit</a></h6>
+                                <br />
                                 <hr />
                                 <hr />
                         </div>
