@@ -11,9 +11,9 @@ class Resume extends React.Component {
                 return (
                         <div className="resume">
                                 <div className="work">
-                                        <h1>work</h1>
+                                        <h1>Work</h1>
                                         <label>Company: {this.props.workCompany}</label>
-                                        <br /><label>Positio: {this.props.workPosition}</label>
+                                        <br /><label>Position: {this.props.workPosition}</label>
                                         <br /><label>Website: {this.props.workWebsite}</label>
                                         {/* <br /><label>StartDa: {this.props.workStartDate.slice(0, 10)}</label> */}
                                         {/* <br /><label>EndDate: {this.props.workEndDate.slice(0, 10)}</label> */}
@@ -34,7 +34,7 @@ class Resume extends React.Component {
                                         <h1>Education</h1>
                                         <br /><label>Institution: {this.props.educationInstitution}</label>
                                         <br /><label>Major: {this.props.educationMajor}</label>
-                                        <br /><label>StudyType: {this.props.educationStudyType}</label>
+                                        <br /><label>Study Type: {this.props.educationStudyType}</label>
                                         {/* <br /><label>StartDate: {this.props.educationStartDate.slice(0, 10)}</label> */}
                                         {/* <br /><label>EndDate: {this.props.educationEndDate.slice(0, 10)}</label> */}
                                         <br /><label>Gpa: {this.props.educationGpa}</label>
@@ -54,7 +54,8 @@ class Resume extends React.Component {
                                 </div>
                                 <hr />
                                 <br />
-                                <h6><a href="/#" onClick={this.deleteResume}>Delete</a> |||| <a href="/#" onClick={this.deleteResume}>Edit</a></h6>
+                                {/* <h6><a href="/#" onClick={this.deleteResume}>Delete</a> |||| <a href="/#" onClick={this.deleteResume}>Edit</a></h6> */}
+                                <h6><a href="/#" onClick={this.deleteResume}>Delete</a></h6>
                                 <br />
                                 <hr />
                                 <hr />
